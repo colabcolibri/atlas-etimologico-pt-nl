@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Etimológico · Holandês ↔ Latim ↔ Português</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1B2438;
+  --ink-2:#242F49;
+  --parchment:#EAE2CC;
+  --parchment-2:#DFD5B8;
+  --parchment-line:#C9BC96;
+  --text:#2A241C;
+  --text-soft:#5B5240;
+  --gold:#B8862E;
+  --gold-bright:#D9A63E;
+
+  --germ:#2E5C8A;
+  --germ-bg:#E1EAF2;
+  --lat:#A3392B;
+  --lat-bg:#F3E2DD;
+  --fr:#3F7A56;
+  --fr-bg:#E1EDE4;
+  --gr:#6B4C93;
+  --gr-bg:#EAE2F0;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--parchment);
+  color:var(--text);
+  font-family:'Source Sans 3', sans-serif;
+  line-height:1.5;
+}
+::selection{background:var(--gold-bright); color:var(--ink);}
+h1,h2,h3,h4{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  margin:0 0 .3em 0;
+  letter-spacing:-.01em;
+}
+.mono{font-family:'IBM Plex Mono', monospace;}
+a{color:inherit;}
+img{max-width:100%;}
+
+/* ---------- texture ---------- */
+.paper{
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(184,134,46,.05), transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(107,76,147,.05), transparent 45%);
+}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky; top:0; z-index:100;
+  background:rgba(27,36,56,.96);
+  backdrop-filter:blur(6px);
+  color:var(--parchment);
+  display:flex; align-items:center; gap:4px;
+  padding:0 18px;
+  overflow-x:auto;
+  border-bottom:1px solid rgba(217,166,62,.3);
+  scrollbar-width:thin;
+}
+nav .brand{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:1.05rem;
+  padding:14px 16px 14px 0;
+  white-space:nowrap;
+  color:var(--gold-bright);
+  border-right:1px solid rgba(255,255,255,.15);
+  margin-right:6px;
+}
+nav button.navlink{
+  white-space:nowrap;
+  font-size:.86rem;
+  padding:14px 12px;
+  color:rgba(234,226,204,.75);
+  text-decoration:none;
+  border:none;
+  border-bottom:2px solid transparent;
+  background:none;
+  font-family:'Source Sans 3', sans-serif;
+  cursor:pointer;
+  transition:.15s;
+}
+nav button.navlink:hover{color:#fff;}
+nav button.navlink.active{color:#fff; border-bottom-color:var(--gold-bright);}
+
+/* ---------- page router (simula site multi-página num único arquivo) ---------- */
+.page{display:none;}
+.page.active{display:block; animation:fadein .25s ease;}
+@keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+/* ---------- hero ---------- */
+header.hero{
+  background:
+    radial-gradient(ellipse 900px 500px at 80% -10%, rgba(217,166,62,.16), transparent 60%),
+    var(--ink);
+  color:var(--parchment);
+  padding:64px 24px 40px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-inner{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;}
+@media(max-width:880px){.hero-inner{grid-template-columns:1fr;}}
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold-bright);
+  margin-bottom:14px;
+}
+.hero h1{font-size:clamp(2.1rem, 4.2vw, 3.3rem); color:#fff; line-height:1.05;}
+.hero h1 em{color:var(--gold-bright); font-style:italic;}
+.hero p.lead{color:rgba(234,226,204,.82); font-size:1.05rem; max-width:52ch; margin-top:14px;}
+.hero-stats{display:flex; gap:26px; margin-top:26px; flex-wrap:wrap;}
+.hero-stats div{border-left:2px solid var(--gold-bright); padding-left:10px;}
+.hero-stats .n{font-family:'Fraunces',serif; font-size:1.5rem; color:#fff; display:block;}
+.hero-stats .l{font-size:.74rem; color:rgba(234,226,204,.65); text-transform:uppercase; letter-spacing:.06em;}
+
+/* signature river diagram */
+.river-wrap{position:relative;}
+.river-svg text{font-family:'IBM Plex Mono', monospace; font-size:11px;}
+.river-svg .lbl-pie{font-family:'Fraunces',serif; font-style:italic; font-size:13px; fill:var(--gold-bright);}
+
+/* ---------- generic section ---------- */
+section{max-width:1180px; margin:0 auto; padding:74px 24px 20px;}
+.section-head{margin-bottom:30px; max-width:70ch;}
+.section-head .eyebrow{color:var(--gold);}
+.section-head h2{font-size:clamp(1.6rem,2.6vw,2.15rem); color:var(--text);}
+.section-head p{color:var(--text-soft); font-size:1rem;}
+
+/* legend chips reused everywhere */
+.legend{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 6px;}
+.chip{
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:'IBM Plex Mono', monospace; font-size:.76rem;
+  padding:5px 11px; border-radius:20px; border:1px solid transparent;
+  cursor:default; user-select:none;
+}
+.chip .dot{width:9px; height:9px; border-radius:50%; display:inline-block;}
+.chip.germanico{background:var(--germ-bg); color:var(--germ); border-color:rgba(46,92,138,.25);}
+.chip.germanico .dot{background:var(--germ);}
+.chip.latim{background:var(--lat-bg); color:var(--lat); border-color:rgba(163,57,43,.25);}
+.chip.latim .dot{background:var(--lat);}
+.chip.frances{background:var(--fr-bg); color:var(--fr); border-color:rgba(63,122,86,.25);}
+.chip.frances .dot{background:var(--fr);}
+.chip.grego{background:var(--gr-bg); color:var(--gr); border-color:rgba(107,76,147,.25);}
+.chip.grego .dot{background:var(--gr);}
+.chip.clickable{cursor:pointer; transition:.15s;}
+.chip.clickable:hover{filter:brightness(.95);}
+.chip.clickable.off{opacity:.35;}
+
+/* ---------- timeline ---------- */
+.timeline-tracks{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:10px;}
+@media(max-width:760px){.timeline-tracks{grid-template-columns:1fr;}}
+.track{background:#fff; border:1px solid var(--parchment-line); border-radius:14px; padding:20px 20px 8px;}
+.track h3{font-size:1.02rem; display:flex; align-items:center; gap:8px;}
+.track h3 .dot{width:10px;height:10px;border-radius:50%;}
+.era{position:relative; padding:0 0 22px 26px; border-left:2px solid var(--parchment-line); margin-left:5px;}
+.era:last-child{border-color:transparent;}
+.era::before{content:""; position:absolute; left:-7px; top:2px; width:12px; height:12px; border-radius:50%; background:#fff; border:2px solid var(--gold);}
+.era .period{font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--text-soft);}
+.era .name{font-weight:600; margin:2px 0 3px;}
+.era p{margin:0; font-size:.88rem; color:var(--text-soft);}
+
+/* ---------- trees ---------- */
+.tree-picker{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px;}
+.tree-btn{
+  font-family:'IBM Plex Mono',monospace; font-size:.82rem;
+  padding:8px 14px; border-radius:9px; border:1px solid var(--parchment-line);
+  background:#fff; cursor:pointer; color:var(--text);
+}
+.tree-btn.active{background:var(--ink); color:var(--parchment); border-color:var(--ink);}
+.tree-stage{background:#fff; border:1px solid var(--parchment-line); border-radius:16px; padding:34px 22px; overflow-x:auto;}
+.tree-root{
+  display:inline-block; margin:0 auto 26px; padding:12px 20px;
+  font-family:'Fraunces',serif; font-style:italic; font-size:1.15rem;
+  border:2px solid var(--gold); border-radius:10px; background:#FFFBF0; color:var(--text);
+}
+.tree-root .gloss{display:block; font-family:'IBM Plex Mono',monospace; font-style:normal; font-size:.7rem; color:var(--text-soft); margin-top:3px;}
+.tree-cols{display:flex; justify-content:center; gap:0; min-width:640px;}
+.tree-branch{position:relative; flex:1; text-align:center; padding-top:34px;}
+.tree-branch::before{
+  content:""; position:absolute; top:0; left:50%; width:2px; height:22px; background:var(--parchment-line);
+}
+.tree-node{
+  display:inline-block; padding:12px 16px; border-radius:10px; font-weight:600;
+  min-width:120px;
+}
+.tree-node .w{font-family:'Fraunces',serif; font-size:1.05rem;}
+.tree-node .g{display:block; font-family:'IBM Plex Mono',monospace; font-weight:400; font-size:.7rem; margin-top:3px; opacity:.85;}
+.tree-note{max-width:64ch; margin:22px auto 0; padding-top:18px; border-top:1px dashed var(--parchment-line); font-size:.92rem; color:var(--text-soft);}
+
+/* ---------- dictionary ---------- */
+.dict-controls{display:flex; gap:14px; flex-wrap:wrap; align-items:center; margin-bottom:20px;}
+.search-box{
+  flex:1; min-width:220px;
+  display:flex; align-items:center; gap:8px;
+  background:#fff; border:1px solid var(--parchment-line); border-radius:10px; padding:9px 14px;
+}
+.search-box input{border:none; outline:none; background:transparent; font-size:.94rem; width:100%; font-family:'Source Sans 3',sans-serif;}
+.count-badge{font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--text-soft);}
+.dict-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px;}
+.word-card{
+  background:#fff; border-radius:12px; border:1px solid var(--parchment-line); border-top:4px solid var(--gold);
+  padding:16px 16px 14px; transition:.15s;
+}
+.word-card.germanico{border-top-color:var(--germ);}
+.word-card.latim{border-top-color:var(--lat);}
+.word-card.frances{border-top-color:var(--fr);}
+.word-card.grego{border-top-color:var(--gr);}
+.word-card:hover{transform:translateY(-2px); box-shadow:0 8px 22px rgba(27,36,56,.08);}
+.word-card .top{display:flex; justify-content:space-between; align-items:flex-start; gap:8px;}
+.word-card .nl{font-family:'Fraunces',serif; font-size:1.22rem; font-weight:600;}
+.word-card .badge{font-family:'IBM Plex Mono',monospace; font-size:.66rem; padding:3px 8px; border-radius:20px; text-transform:uppercase; letter-spacing:.03em; white-space:nowrap;}
+.word-card.germanico .badge{background:var(--germ-bg); color:var(--germ);}
+.word-card.latim .badge{background:var(--lat-bg); color:var(--lat);}
+.word-card.frances .badge{background:var(--fr-bg); color:var(--fr);}
+.word-card.grego .badge{background:var(--gr-bg); color:var(--gr);}
+.word-card .src{font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--text-soft); margin:6px 0 10px;}
+.cognates{display:grid; grid-template-columns:auto 1fr; gap:3px 8px; font-size:.85rem;}
+.cognates b{font-weight:600; font-size:.72rem; color:var(--text-soft); text-transform:uppercase;}
+.word-card .note{font-size:.82rem; color:var(--text-soft); margin-top:10px; padding-top:10px; border-top:1px solid var(--parchment-2);}
+.fav-btn{background:none; border:none; cursor:pointer; font-size:1.1rem; line-height:1; padding:0 2px; color:var(--parchment-line);}
+.fav-btn.active{color:var(--gold);}
+
+/* ---------- sound changes ---------- */
+.grimm-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;}
+.grimm-card{background:#fff; border:1px solid var(--parchment-line); border-radius:14px; padding:18px 20px;}
+.grimm-shift{
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  font-family:'IBM Plex Mono',monospace; font-size:1.5rem; font-weight:600;
+  margin-bottom:6px;
+}
+.grimm-shift .from{color:var(--lat);}
+.grimm-shift .to{color:var(--germ);}
+.grimm-shift .arrow{color:var(--gold); font-size:1.1rem;}
+.grimm-caption{text-align:center; font-size:.72rem; color:var(--text-soft); margin-bottom:16px; font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.04em;}
+.grimm-pair{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:8px;}
+.grimm-box{text-align:center; padding:12px 8px; border-radius:10px;}
+.grimm-box.latim{background:var(--lat-bg);}
+.grimm-box.germ{background:var(--germ-bg);}
+.grimm-box .word{font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem; color:var(--text);}
+.grimm-box .label{font-family:'IBM Plex Mono',monospace; font-size:.62rem; text-transform:uppercase; letter-spacing:.03em; color:var(--text-soft); margin-top:5px; line-height:1.5;}
+.grimm-arrow-mid{color:var(--gold); font-size:1.2rem;}
+.grimm-note{margin-top:14px; padding-top:12px; border-top:1px dashed var(--parchment-line); font-size:.8rem; color:var(--text-soft);}
+.pattern-card{background:#fff; border:1px solid var(--parchment-line); border-radius:14px; padding:20px; margin-bottom:16px;}
+.pattern-card h4{font-family:'IBM Plex Mono',monospace; font-size:.95rem; color:var(--gold);}
+.pattern-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px;}
+@media(max-width:700px){.pattern-grid{grid-template-columns:1fr;}}
+.pattern-ex{background:var(--parchment); border-radius:8px; padding:10px 12px; font-size:.86rem;}
+.pattern-ex .lat{font-family:'IBM Plex Mono',monospace; color:var(--lat); font-size:.78rem;}
+.pattern-ex .pair{font-family:'Fraunces',serif; font-weight:600; margin-top:2px;}
+
+/* ---------- families ---------- */
+.fam-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:18px;}
+.fam-card{background:#fff; border:1px solid var(--parchment-line); border-radius:14px; padding:20px;}
+.fam-card h4{font-family:'Fraunces',serif; font-size:1.15rem; display:flex; align-items:center; gap:8px;}
+.fam-card .root{font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--text-soft); margin-bottom:12px;}
+.fam-item{display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-top:1px solid var(--parchment-2); font-size:.88rem;}
+.fam-item:first-of-type{border-top:none;}
+.fam-item .role{font-family:'IBM Plex Mono',monospace; font-size:.68rem; color:var(--text-soft); text-transform:uppercase;}
+
+/* ---------- comparison table ---------- */
+.compare-scroll{overflow-x:auto; border:1px solid var(--parchment-line); border-radius:14px; background:#fff;}
+table.compare{width:100%; border-collapse:collapse; min-width:760px;}
+table.compare th{
+  position:sticky; top:0; background:var(--ink); color:var(--parchment);
+  font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.05em; font-size:.7rem;
+  padding:12px 14px; text-align:left;
+}
+table.compare td{padding:11px 14px; border-bottom:1px solid var(--parchment-2); font-size:.89rem;}
+table.compare tr:hover td{background:#FBF8EF;}
+table.compare td.nl-cell{font-family:'Fraunces',serif; font-weight:600;}
+.origin-dot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px;}
+
+/* ---------- quiz ---------- */
+.quiz-card{background:#fff; border:1px solid var(--parchment-line); border-radius:18px; padding:34px; max-width:640px; margin:0 auto; text-align:center;}
+.quiz-word{font-family:'Fraunces',serif; font-size:2.3rem; margin:6px 0 4px;}
+.quiz-hint{color:var(--text-soft); font-size:.85rem; font-family:'IBM Plex Mono',monospace;}
+.quiz-options{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:26px 0 6px;}
+@media(max-width:480px){.quiz-options{grid-template-columns:1fr;}}
+.quiz-opt{
+  padding:13px; border-radius:10px; border:2px solid var(--parchment-line); background:#fff;
+  font-family:'IBM Plex Mono',monospace; font-size:.88rem; cursor:pointer; transition:.12s;
+}
+.quiz-opt:hover{border-color:var(--gold);}
+.quiz-opt.correct{background:var(--fr-bg); border-color:var(--fr); color:var(--fr);}
+.quiz-opt.wrong{background:var(--lat-bg); border-color:var(--lat); color:var(--lat);}
+.quiz-reveal{margin-top:20px; padding-top:18px; border-top:1px dashed var(--parchment-line); text-align:left; font-size:.9rem; color:var(--text-soft); display:none;}
+.quiz-reveal.show{display:block;}
+.quiz-footer{display:flex; justify-content:space-between; align-items:center; margin-top:24px;}
+.quiz-score{font-family:'IBM Plex Mono',monospace; font-size:.85rem; color:var(--text-soft);}
+.btn{
+  font-family:'IBM Plex Mono',monospace; font-size:.82rem; padding:9px 16px; border-radius:8px;
+  border:1px solid var(--ink); background:var(--ink); color:var(--parchment); cursor:pointer;
+}
+.btn.ghost{background:transparent; color:var(--ink);}
+.btn:disabled{opacity:.4; cursor:default;}
+
+footer{text-align:center; padding:50px 24px 70px; color:var(--text-soft); font-size:.82rem;}
+footer .mono{color:var(--text-soft);}
+</style>
+</head>
+<body class="paper">
+
+<nav id="mainNav">
+  <span class="brand">📘 Atlas Etimológico</span>
+  <button type="button" class="navlink" data-page="inicio">Início</button>
+  <button type="button" class="navlink" data-page="linha-do-tempo">Linha do Tempo</button>
+  <button type="button" class="navlink" data-page="arvores">Árvores</button>
+  <button type="button" class="navlink" data-page="sons">Mudanças Sonoras</button>
+  <button type="button" class="navlink" data-page="dicionario">Dicionário</button>
+  <button type="button" class="navlink" data-page="familias">Famílias</button>
+  <button type="button" class="navlink" data-page="comparacao">Comparação</button>
+  <button type="button" class="navlink" data-page="exercicios">Exercícios</button>
+</nav>
+
+<header class="hero page active" id="inicio">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Método visual · PT → NL via Latim &amp; Germânico</div>
+      <h1>De <em>vinum</em> a <em>wijn</em>:<br>o mapa oculto do vocabulário holandês</h1>
+      <p class="lead">Um atlas interativo para quem já fala português e quer parar de decorar palavras soltas — e passar a enxergar os padrões que ligam o holandês ao latim, ao francês, ao grego e à sua própria língua germânica.</p>
+      <div class="hero-stats" id="heroStats">
+        <div><span class="n" id="statWords">–</span><span class="l">Palavras mapeadas</span></div>
+        <div><span class="n">4</span><span class="l">Origens etimológicas</span></div>
+        <div><span class="n">5</span><span class="l">Árvores clicáveis</span></div>
+        <div><span class="n" id="statCompare">–</span><span class="l">Comparações PT·NL·EN·DE·LA</span></div>
+      </div>
+    </div>
+    <div class="river-wrap">
+      <svg class="river-svg" viewBox="0 0 380 340" width="100%">
+        <text x="190" y="20" text-anchor="middle" class="lbl-pie">Proto-Indo-Europeu</text>
+        <path d="M190,28 C190,60 90,60 90,95" stroke="#B8862E" stroke-width="2" fill="none"/>
+        <path d="M190,28 C190,60 290,60 290,95" stroke="#B8862E" stroke-width="2" fill="none"/>
+        <text x="90" y="112" text-anchor="middle" fill="#D9A63E" font-style="italic">Proto-Germânico</text>
+        <text x="290" y="112" text-anchor="middle" fill="#D9A63E" font-style="italic">Latim</text>
+        <path d="M90,118 C90,150 60,150 60,180" stroke="#2E5C8A" stroke-width="2" fill="none"/>
+        <path d="M90,118 C90,150 120,150 120,180" stroke="#2E5C8A" stroke-width="2" fill="none"/>
+        <path d="M290,118 C290,150 260,150 260,180" stroke="#A3392B" stroke-width="2" fill="none"/>
+        <path d="M290,118 C290,150 320,150 320,180" stroke="#A3392B" stroke-width="2" fill="none"/>
+        <rect x="30" y="182" width="60" height="24" rx="6" fill="#E1EAF2"/>
+        <text x="60" y="198" text-anchor="middle" fill="#2E5C8A" font-size="10">vader</text>
+        <rect x="90" y="182" width="60" height="24" rx="6" fill="#E1EAF2"/>
+        <text x="120" y="198" text-anchor="middle" fill="#2E5C8A" font-size="10">hart</text>
+        <rect x="230" y="182" width="60" height="24" rx="6" fill="#F3E2DD"/>
+        <text x="260" y="198" text-anchor="middle" fill="#A3392B" font-size="10">wijn</text>
+        <rect x="290" y="182" width="60" height="24" rx="6" fill="#F3E2DD"/>
+        <text x="320" y="198" text-anchor="middle" fill="#A3392B" font-size="10">cultuur</text>
+        <path d="M60,206 C60,230 190,230 190,255" stroke="#5B5240" stroke-width="1.4" stroke-dasharray="3 3" fill="none"/>
+        <path d="M120,206 C120,230 190,230 190,255" stroke="#5B5240" stroke-width="1.4" stroke-dasharray="3 3" fill="none"/>
+        <path d="M260,206 C260,230 190,230 190,255" stroke="#5B5240" stroke-width="1.4" stroke-dasharray="3 3" fill="none"/>
+        <path d="M320,206 C320,230 190,230 190,255" stroke="#5B5240" stroke-width="1.4" stroke-dasharray="3 3" fill="none"/>
+        <circle cx="190" cy="262" r="32" fill="#D9A63E" opacity=".15"/>
+        <circle cx="190" cy="262" r="26" fill="none" stroke="#D9A63E" stroke-width="1.5"/>
+        <text x="190" y="258" text-anchor="middle" fill="#EAE2CC" font-family="Fraunces, serif" font-style="italic" font-size="13">holandês</text>
+        <text x="190" y="273" text-anchor="middle" fill="#D9A63E" font-size="9">moderno</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= LINHA DO TEMPO ======================= -->
+<section id="linha-do-tempo" class="page">
+  <div class="section-head">
+    <div class="eyebrow mono">01 · CONTEXTO HISTÓRICO</div>
+    <h2>Duas linhas do tempo, uma origem comum</h2>
+    <p>O holandês e o português partem do mesmo tronco indo-europeu, mas seguiram rotas opostas: uma germânica, outra românica — até se reencontrarem através de séculos de empréstimos.</p>
+  </div>
+  <div class="timeline-tracks" id="timelineTracks"></div>
+</section>
+
+<!-- ======================= ÁRVORES ======================= -->
+<section id="arvores" class="page">
+  <div class="section-head">
+    <div class="eyebrow mono">02 · ÁRVORES ETIMOLÓGICAS</div>
+    <h2>Como uma palavra se espalha pela Europa</h2>
+    <p>Clique em uma raiz para ver como o mesmo étimo latino ou indo-europeu se ramificou em holandês, português, inglês e alemão.</p>
+  </div>
+  <div class="tree-picker" id="treePicker"></div>
+  <div class="tree-stage" id="treeStage"></div>
+</section>
+
+<!-- ======================= SONS ======================= -->
+<section id="sons" class="page">
+  <div class="section-head">
+    <div class="eyebrow mono">03 · MUDANÇAS SONORAS</div>
+    <h2>As regras que tornam o vocabulário previsível</h2>
+    <p>Duas famílias de padrões fazem a maior parte do trabalho: a <b>Lei de Grimm</b> (por que "pai" e "vader" são parentes) e as <b>terminações latinas regulares</b> que o holandês herdou quase intactas.</p>
+  </div>
+
+  <h3 style="margin-bottom:6px;">A Lei de Grimm — parentesco escondido</h3>
+  <p style="color:var(--text-soft); font-size:.92rem; max-width:70ch; margin-top:0 0 14px;">Por volta de 500 a.C., certas consoantes do proto-germânico sofreram uma mudança sistemática em relação ao indo-europeu original — a mesma raiz que o latim preservou quase sem alterações. Leia cada card assim: <b>a consoante da esquerda "virou" a da direita</b> quando o germânico se separou do latim. O resultado, milênios depois: pares como <i>pai/vader</i> ou <i>coração/hart</i> não são coincidência, são primos distantes.</p>
+  <div class="grimm-grid" id="grimmGrid" style="margin-bottom:34px;"></div>
+
+  <h3 style="margin-bottom:6px;">Terminações latinas → holandês (e português)</h3>
+  <p style="color:var(--text-soft); font-size:.92rem; max-width:70ch; margin:0 0 14px;">Palavras eruditas latinas entraram tanto no português quanto no holandês, cada uma adaptando a terminação ao seu próprio molde fonético. Reconhecer essas terminações permite "traduzir" centenas de palavras à primeira vista.</p>
+  <div style="font-size:.8rem; color:var(--text-soft); margin:-8px 0 14px;">↓ role para o lado nas fichas se estiverem cortadas</div>
+  <div id="patternCards"></div>
+</section>
+
+<!-- ======================= DICIONÁRIO ======================= -->
+<section id="dicionario" class="page">
+  <div class="section-head">
+    <div class="eyebrow mono">04 · DICIONÁRIO VISUAL</div>
+    <h2>Explore o vocabulário por origem</h2>
+    <p>Busque uma palavra em holandês, português, inglês ou alemão, ou filtre por família etimológica.</p>
+  </div>
+  <div class="legend" id="filterChips"></div>
+  <div class="dict-controls">
+    <div class="search-box">
+      <span class="mono" style="color:var(--text-soft);">🔍</span>
+      <input id="searchInput" type="text" placeholder="Buscar palavra (NL, PT, EN ou DE)…">
+    </div>
+    <span class="count-badge" id="dictCount"></span>
+  </div>
+  <div class="dict-grid" id="dictGrid"></div>
+</section>
+
+<!-- ======================= FAMÍLIAS ======================= -->
+<section id="familias" class="page">
+  <div class="section-head">
+    <div class="eyebrow mono">05 · FAMÍLIAS DE PALAVRAS</div>
+    <h2>Um étimo, vários filhos</h2>
+    <p>Quando você aprende <i>cultuur</i>, você já sabe metade de <i>cultureel</i> e <i>cultiveren</i>. Algumas famílias, porém, escondem "falsos irmãos" — palavras parecidas com sentidos que se afastaram.</p>
+  </div>
+  <div class="fam-grid" id="famGrid"></div>
+</section>
+
+<!-- ======================= COMPARAÇÃO ======================= -->
+<section id="comparacao" class="page">
+  <div class="section-head">
+    <div class="eyebrow mono">06 · COMPARAÇÃO ENTRE LÍNGUAS</div>
+    <h2>Português, holandês, inglês, alemão e latim lado a lado</h2>
+    <p>A cor do ponto indica a origem etimológica da palavra holandesa.</p>
+  </div>
+  <div class="compare-scroll">
+    <table class="compare">
+      <thead><tr><th>Holandês</th><th>Português</th><th>Inglês</th><th>Alemão</th><th>Latim / Étimo</th></tr></thead>
+      <tbody id="compareBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ======================= EXERCÍCIOS ======================= -->
+<section id="exercicios" class="page">
+  <div class="section-head">
+    <div class="eyebrow mono">07 · PRATIQUE</div>
+    <h2>Adivinhe a origem antes de revelar</h2>
+    <p>Veja a palavra holandesa e tente identificar sua origem etimológica.</p>
+  </div>
+  <div class="quiz-card">
+    <div class="quiz-hint" id="quizHint">PALAVRA HOLANDESA</div>
+    <div class="quiz-word" id="quizWord">—</div>
+    <div class="quiz-options" id="quizOptions"></div>
+    <div class="quiz-reveal" id="quizReveal"></div>
+    <div class="quiz-footer">
+      <span class="quiz-score mono" id="quizScore">Acertos: 0 / 0</span>
+      <button class="btn" id="quizNext">Próxima palavra →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="mono">Atlas Etimológico Holandês ↔ Latim ↔ Português · protótipo de estudo pessoal</p>
+  <p>Conjunto de mais de 500 palavras curadas manualmente, pensado para ser expandido até milhares de entradas organizadas por frequência e padrão.</p>
+</footer>
+
+<script>
+const ORIGIN_META = {
+  germanico:{label:'Germânico', color:'#2E5C8A'},
+  latim:{label:'Latim', color:'#A3392B'},
+  frances:{label:'Francês', color:'#3F7A56'},
+  grego:{label:'Grego', color:'#6B4C93'},
+};
+
+const WORDS = [
+// ---------------- GERMÂNICO ----------------
+{nl:'water', origin:'germanico', pt:'água', en:'water', de:'Wasser', source:'PIE *wódr̥', note:'Núcleo do vocabulário cotidiano germânico — a raiz PIE *wed- também aparece em "hidro-" (grego), que chega ao português por outra via.'},
+{nl:'huis', origin:'germanico', pt:'casa', en:'house', de:'Haus', source:'Proto-germ. *hūsan', note:'Sem cognato evidente em português — o latim usava "domus" e "casa" (originalmente "cabana").'},
+{nl:'hand', origin:'germanico', pt:'mão', en:'hand', de:'Hand', source:'Proto-germ. *handuz'},
+{nl:'boek', origin:'germanico', pt:'livro', en:'book', de:'Buch', source:'Proto-germ. *bōks', note:'Ligado a "faia" (a árvore), possivelmente por causa de tábuas de madeira usadas para gravar runas.'},
+{nl:'vader', origin:'germanico', pt:'pai', en:'father', de:'Vater', source:'PIE *ph₂tḗr', family:'grimm', note:'Cognato direto do latim "pater" — a consoante inicial p mudou para f pela Lei de Grimm.'},
+{nl:'moeder', origin:'germanico', pt:'mãe', en:'mother', de:'Mutter', source:'PIE *méh₂tēr', family:'grimm', note:'Cognato de "mater" (latim); o m inicial não muda na Lei de Grimm, por isso a semelhança salta aos olhos.'},
+{nl:'hart', origin:'germanico', pt:'coração', en:'heart', de:'Herz', source:'PIE *ḱḗr', family:'grimm', note:'Cognato de "cor / cordis" (latim, de onde vem "coração" e "cordial") — k inicial vira h pela Lei de Grimm.'},
+{nl:'voet', origin:'germanico', pt:'pé', en:'foot', de:'Fuß', source:'PIE *pṓds', family:'grimm', note:'Cognato de "pes / pedis" (latim, de onde vem "pedestre" e "pedal") — p inicial vira f.'},
+{nl:'drie', origin:'germanico', pt:'três', en:'three', de:'drei', source:'PIE *tréyes', family:'grimm', note:'Cognato de "tres" (latim) — t inicial vira "th"/d pela Lei de Grimm.'},
+{nl:'vis', origin:'germanico', pt:'peixe', en:'fish', de:'Fisch', source:'PIE *peysk-', family:'grimm', note:'Cognato distante de "piscis" (latim, de onde vem "peixe" e "piscicultura") — p inicial vira f.'},
+{nl:'nacht', origin:'germanico', pt:'noite', en:'night', de:'Nacht', source:'PIE *nókʷts'},
+{nl:'zon', origin:'germanico', pt:'sol', en:'sun', de:'Sonne', source:'Proto-germ. *sunnōn'},
+{nl:'maan', origin:'germanico', pt:'lua', en:'moon', de:'Mond', source:'Proto-germ. *mēnôn'},
+{nl:'dag', origin:'germanico', pt:'dia', en:'day', de:'Tag', source:'Proto-germ. *dagaz'},
+{nl:'brood', origin:'germanico', pt:'pão', en:'bread', de:'Brot', source:'Proto-germ. *braudą'},
+{nl:'vriend', origin:'germanico', pt:'amigo', en:'friend', de:'Freund', source:'Proto-germ. *frijōndz', note:'Literalmente "aquele que ama" — particípio de um verbo germânico para "amar".'},
+{nl:'vuur', origin:'germanico', pt:'fogo', en:'fire', de:'Feuer', source:'PIE *péh₂wr̥', note:'Cognato distante do grego "pyr" (de onde vem "piromaníaco" em português).'},
+{nl:'ijzer', origin:'germanico', pt:'ferro', en:'iron', de:'Eisen', source:'Proto-celta *īsarnom (empréstimo)'},
+{nl:'groen', origin:'germanico', pt:'verde', en:'green', de:'grün', source:'Proto-germ. *grōniz'},
+{nl:'zwart', origin:'germanico', pt:'preto', en:'black', de:'schwarz', source:'Proto-germ. *swartaz'},
+{nl:'wit', origin:'germanico', pt:'branco', en:'white', de:'weiß', source:'Proto-germ. *hwītaz'},
+{nl:'slapen', origin:'germanico', pt:'dormir', en:'sleep', de:'schlafen', source:'Proto-germ. *slēpaną'},
+{nl:'zien', origin:'germanico', pt:'ver', en:'see', de:'sehen', source:'Proto-germ. *sehwaną'},
+{nl:'hond', origin:'germanico', pt:'cão', en:'hound', de:'Hund', source:'Proto-germ. *hundaz'},
+{nl:'koe', origin:'germanico', pt:'vaca', en:'cow', de:'Kuh', source:'PIE *gʷṓws'},
+{nl:'schip', origin:'germanico', pt:'navio', en:'ship', de:'Schiff', source:'Proto-germ. *skipą'},
+{nl:'koning', origin:'germanico', pt:'rei', en:'king', de:'König', source:'Proto-germ. *kuningaz', note:'"Rei" em português vem do latim "rex", uma raiz completamente diferente.'},
+
+// ---------------- LATIM ----------------
+{nl:'wijn', origin:'latim', pt:'vinho', en:'wine', de:'Wein', source:'Latim vinum', family:'vinum', note:'A entrada clássica do V latino [w] preservado como w em holandês — em português o v evoluiu para o som [v].'},
+{nl:'kaas', origin:'latim', pt:'queijo', en:'cheese', de:'Käse', source:'Latim caseus'},
+{nl:'straat', origin:'latim', pt:'estrada / rua', en:'street', de:'Straße', source:'Latim (via) strata', note:'Literalmente "(via) pavimentada" — o particípio "strata" virou palavra independente em ambas as línguas.'},
+{nl:'muur', origin:'latim', pt:'muro', en:'wall (masonry)', de:'Mauer', source:'Latim murus'},
+{nl:'paleis', origin:'latim', pt:'palácio', en:'palace', de:'Palast', source:'Latim palatium', note:'Do monte Palatino em Roma, onde os imperadores residiam.'},
+{nl:'kasteel', origin:'latim', pt:'castelo', en:'castle', de:'Kastell/Schloss', source:'Latim castellum', family:'castellum'},
+{nl:'tafel', origin:'latim', pt:'tábua / mesa', en:'table', de:'Tafel', source:'Latim tabula'},
+{nl:'school', origin:'latim', pt:'escola', en:'school', de:'Schule', source:'Latim schola (< grego scholḗ)', note:'Entra no holandês via latim, mas a raiz mais profunda é grega — "tempo livre para estudar".'},
+{nl:'keizer', origin:'latim', pt:'imperador', en:'emperor', de:'Kaiser', source:'Latim Caesar', note:'O título de Júlio César virou palavra comum para "imperador" tanto em germânico (Kaiser/keizer) quanto, via eslavo, em "czar".'},
+{nl:'paus', origin:'latim', pt:'papa', en:'pope', de:'Papst', source:'Latim papa'},
+{nl:'mis', origin:'latim', pt:'missa', en:'mass', de:'Messe', source:'Latim missa'},
+{nl:'familie', origin:'latim', pt:'família', en:'family', de:'Familie', source:'Latim familia'},
+{nl:'natie', origin:'latim', pt:'nação', en:'nation', de:'Nation', source:'Latim natio', family:'natie'},
+{nl:'nationaal', origin:'latim', pt:'nacional', en:'national', de:'national', source:'Latim nationalis', family:'natie'},
+{nl:'internationaal', origin:'latim', pt:'internacional', en:'international', de:'international', source:'Latim inter + natio', family:'natie'},
+{nl:'cultuur', origin:'latim', pt:'cultura', en:'culture', de:'Kultur', source:'Latim cultura', family:'cultuur'},
+{nl:'cultureel', origin:'latim', pt:'cultural', en:'cultural', de:'kulturell', source:'Latim cultura + -alis', family:'cultuur'},
+{nl:'cultiveren', origin:'latim', pt:'cultivar', en:'cultivate', de:'kultivieren', source:'Latim cultivare', family:'cultuur'},
+{nl:'universiteit', origin:'latim', pt:'universidade', en:'university', de:'Universität', source:'Latim universitas'},
+{nl:'politie', origin:'latim', pt:'polícia', en:'police', de:'Polizei', source:'Latim politia (< grego politeia)', family:'polis', note:'Curiosamente, "política" e "polícia" divergem em holandês em duas palavras distintas — veja a família "polis".'},
+{nl:'hospitaal', origin:'latim', pt:'hospital', en:'hospital', de:'Hospital', source:'Latim hospitale'},
+{nl:'moment', origin:'latim', pt:'momento', en:'moment', de:'Moment', source:'Latim momentum'},
+{nl:'informatie', origin:'latim', pt:'informação', en:'information', de:'Information', source:'Latim informatio', family:'informatie'},
+{nl:'informeren', origin:'latim', pt:'informar', en:'to inform', de:'informieren', source:'Latim informare', family:'informatie'},
+{nl:'informatief', origin:'latim', pt:'informativo', en:'informative', de:'informativ', source:'Latim informativus', family:'informatie'},
+{nl:'minuut', origin:'latim', pt:'minuto', en:'minute', de:'Minute', source:'Latim minuta'},
+{nl:'product', origin:'latim', pt:'produto', en:'product', de:'Produkt', source:'Latim productus'},
+{nl:'medicijn', origin:'latim', pt:'medicina / remédio', en:'medicine', de:'Medizin', source:'Latim medicina'},
+{nl:'kwaliteit', origin:'latim', pt:'qualidade', en:'quality', de:'Qualität', source:'Latim qualitas'},
+{nl:'normaal', origin:'latim', pt:'normal', en:'normal', de:'normal', source:'Latim normalis'},
+
+// ---------------- FRANCÊS ----------------
+{nl:'bureau', origin:'frances', pt:'escritório', en:'desk / office', de:'Büro', source:'Francês bureau'},
+{nl:'chef', origin:'frances', pt:'chefe', en:'chief / chef', de:'Chef', source:'Francês chef (< latim caput, "cabeça")'},
+{nl:'horloge', origin:'frances', pt:'relógio', en:'clock', de:'Uhr', source:'Francês horloge (< latim horologium < grego hōrológion)', family:'horologium', note:'Curioso: o holandês pegou emprestado do francês, o português foi direto ao latim — mesmo étimo, rotas diferentes.'},
+{nl:'paraplu', origin:'frances', pt:'guarda-chuva', en:'umbrella', de:'Regenschirm', source:'Francês parapluie'},
+{nl:'logeren', origin:'frances', pt:'hospedar-se', en:'to lodge', de:'logieren', source:'Francês loger'},
+{nl:'reclame', origin:'frances', pt:'propaganda / reclame', en:'advertisement', de:'Reklame', source:'Francês réclame'},
+{nl:'garage', origin:'frances', pt:'garagem', en:'garage', de:'Garage', source:'Francês garage'},
+{nl:'controleren', origin:'frances', pt:'controlar', en:'to control', de:'kontrollieren', source:'Francês contrôler'},
+{nl:'etage', origin:'frances', pt:'andar (de prédio)', en:'floor / storey', de:'Etage', source:'Francês étage'},
+{nl:'restaurant', origin:'frances', pt:'restaurante', en:'restaurant', de:'Restaurant', source:'Francês restaurant'},
+
+// ---------------- GREGO ----------------
+{nl:'telefoon', origin:'grego', pt:'telefone', en:'telephone', de:'Telefon', source:'Grego tēle + phōnḗ', family:'telefoon'},
+{nl:'telefoneren', origin:'grego', pt:'telefonar', en:'to phone', de:'telefonieren', source:'Grego tēle + phōnḗ', family:'telefoon'},
+{nl:'telefonisch', origin:'grego', pt:'telefônico', en:'by phone', de:'telefonisch', source:'Grego tēle + phōnḗ', family:'telefoon'},
+{nl:'democratie', origin:'grego', pt:'democracia', en:'democracy', de:'Demokratie', source:'Grego dēmokratía'},
+{nl:'biologie', origin:'grego', pt:'biologia', en:'biology', de:'Biologie', source:'Grego bíos + lógos'},
+{nl:'filosofie', origin:'grego', pt:'filosofia', en:'philosophy', de:'Philosophie', source:'Grego philosophía'},
+{nl:'economie', origin:'grego', pt:'economia', en:'economy', de:'Ökonomie', source:'Grego oikonomía'},
+{nl:'kerk', origin:'grego', pt:'igreja', en:'church', de:'Kirche', source:'Grego kyriakón ("do Senhor")', note:'"Igreja" em português vem de outra palavra grega, "ekklēsía" (assembleia) — dois nomes gregos diferentes para o mesmo conceito!'},
+{nl:'bijbel', origin:'grego', pt:'bíblia', en:'bible', de:'Bibel', source:'Grego biblía'},
+{nl:'politiek', origin:'grego', pt:'política', en:'politics', de:'Politik', source:'Grego politikós (< pólis, "cidade")', family:'polis', note:'Mesma raiz grega de "politie" (polícia), mas chegou ao holandês por um caminho derivacional diferente — por isso os sentidos se afastaram.'},
+{nl:'politicus', origin:'grego', pt:'político', en:'politician', de:'Politiker', source:'Grego politikós', family:'polis'},
+{nl:'muziek', origin:'grego', pt:'música', en:'music', de:'Musik', source:'Grego mousikḗ (via latim musica)'},
+{nl:'apotheek', origin:'grego', pt:'farmácia', en:'pharmacy', de:'Apotheke', source:'Grego apothḗkē ("depósito")', note:'Mesma raiz da palavra francesa "boutique" — um depósito virou farmácia de um lado da Europa e loja do outro.'},
+{nl:'een', origin:'germanico', pt:'um', en:'one', de:'eins', source:'Proto-germ. *ainaz'},
+{nl:'twee', origin:'germanico', pt:'dois', en:'two', de:'zwei', source:'Proto-germ. *twai'},
+{nl:'vier', origin:'germanico', pt:'quatro', en:'four', de:'vier', source:'Proto-germ. *fedwōr'},
+{nl:'vijf', origin:'germanico', pt:'cinco', en:'five', de:'fünf', source:'Proto-germ. *fimf'},
+{nl:'zes', origin:'germanico', pt:'seis', en:'six', de:'sechs', source:'Proto-germ. *sekhs'},
+{nl:'zeven', origin:'germanico', pt:'sete', en:'seven', de:'sieben', source:'Proto-germ. *sebun'},
+{nl:'acht', origin:'germanico', pt:'oito', en:'eight', de:'acht', source:'Proto-germ. *ahtōu'},
+{nl:'negen', origin:'germanico', pt:'nove', en:'nine', de:'neun', source:'Proto-germ. *newun'},
+{nl:'tien', origin:'germanico', pt:'dez', en:'ten', de:'zehn', source:'PIE *dékm̥', note:'Cognato de \'decem\' (latim) — o d inicial vira t pela Lei de Grimm.', family:'grimm'},
+{nl:'honderd', origin:'germanico', pt:'cem', en:'hundred', de:'hundert', source:'Proto-germ. *hundą'},
+{nl:'duizend', origin:'germanico', pt:'mil', en:'thousand', de:'tausend', source:'Proto-germ. *þūsundī'},
+{nl:'broer', origin:'germanico', pt:'irmão', en:'brother', de:'Bruder', source:'Proto-germ. *brōþēr'},
+{nl:'zus', origin:'germanico', pt:'irmã', en:'sister', de:'Schwester', source:'Proto-germ. *swestēr'},
+{nl:'zoon', origin:'germanico', pt:'filho', en:'son', de:'Sohn', source:'Proto-germ. *sunuz'},
+{nl:'dochter', origin:'germanico', pt:'filha', en:'daughter', de:'Tochter', source:'Proto-germ. *duhtēr'},
+{nl:'man', origin:'germanico', pt:'homem', en:'man', de:'Mann', source:'Proto-germ. *mann-'},
+{nl:'vrouw', origin:'germanico', pt:'mulher', en:'woman', de:'Frau', source:'Proto-germ. *frawjǭ', note:'Originalmente \'senhora, patroa\' — sentido de \'mulher\' em geral é desenvolvimento posterior.'},
+{nl:'kind', origin:'germanico', pt:'criança', en:'child', de:'Kind', source:'Proto-germ. *kinþą'},
+{nl:'hoofd', origin:'germanico', pt:'cabeça', en:'head', de:'Haupt', source:'Proto-germ. *haubudą'},
+{nl:'oog', origin:'germanico', pt:'olho', en:'eye', de:'Auge', source:'Proto-germ. *augô'},
+{nl:'oor', origin:'germanico', pt:'orelha', en:'ear', de:'Ohr', source:'Proto-germ. *auzô'},
+{nl:'neus', origin:'germanico', pt:'nariz', en:'nose', de:'Nase', source:'Proto-germ. *nusō'},
+{nl:'mond', origin:'germanico', pt:'boca', en:'mouth', de:'Mund', source:'Proto-germ. *munþaz'},
+{nl:'tand', origin:'germanico', pt:'dente', en:'tooth', de:'Zahn', source:'Proto-germ. *tanþs'},
+{nl:'tong', origin:'germanico', pt:'língua (órgão)', en:'tongue', de:'Zunge', source:'Proto-germ. *tungô'},
+{nl:'arm', origin:'germanico', pt:'braço', en:'arm', de:'Arm', source:'Proto-germ. *armaz'},
+{nl:'been', origin:'germanico', pt:'perna / osso', en:'leg / bone', de:'Bein', source:'Proto-germ. *bainą', note:'Em holandês \'been\' significa tanto \'perna\' quanto \'osso\' — em alemão \'Bein\' é só perna.'},
+{nl:'rug', origin:'germanico', pt:'costas', en:'back', de:'Rücken', source:'Proto-germ. *hruggiz'},
+{nl:'huid', origin:'germanico', pt:'pele', en:'skin', de:'Haut', source:'Proto-germ. *hūdiz'},
+{nl:'bloed', origin:'germanico', pt:'sangue', en:'blood', de:'Blut', source:'Proto-germ. *blōdą'},
+{nl:'aarde', origin:'germanico', pt:'terra', en:'earth', de:'Erde', source:'Proto-germ. *erþō'},
+{nl:'lucht', origin:'germanico', pt:'ar', en:'air', de:'Luft', source:'Proto-germ. *luftuz', note:'Cognato do inglês \'loft\' (sótão) — mesma raiz, sentido divergente.'},
+{nl:'wind', origin:'germanico', pt:'vento', en:'wind', de:'Wind', source:'Proto-germ. *windaz'},
+{nl:'regen', origin:'germanico', pt:'chuva', en:'rain', de:'Regen', source:'Proto-germ. *regną'},
+{nl:'sneeuw', origin:'germanico', pt:'neve', en:'snow', de:'Schnee', source:'Proto-germ. *snaiwaz'},
+{nl:'steen', origin:'germanico', pt:'pedra', en:'stone', de:'Stein', source:'Proto-germ. *stainaz'},
+{nl:'hout', origin:'germanico', pt:'madeira', en:'wood', de:'Holz', source:'Proto-germ. *hultą'},
+{nl:'boom', origin:'germanico', pt:'árvore', en:'tree', de:'Baum', source:'Proto-germ. *bagmaz', note:'Cognato do inglês \'beam\' (viga) — sentido original de \'árvore/madeira\'.'},
+{nl:'gras', origin:'germanico', pt:'grama', en:'grass', de:'Gras', source:'Proto-germ. *grasą'},
+{nl:'blad', origin:'germanico', pt:'folha', en:'leaf', de:'Blatt', source:'Proto-germ. *bladą'},
+{nl:'berg', origin:'germanico', pt:'montanha', en:'mountain', de:'Berg', source:'Proto-germ. *bergaz'},
+{nl:'zee', origin:'germanico', pt:'mar', en:'sea', de:'See', source:'Proto-germ. *saiwiz'},
+{nl:'meer', origin:'germanico', pt:'lago', en:'lake', de:'Meer', source:'PIE *móri', note:'Cognato de \'mare\' (latim) — não é empréstimo, é herança direta e paralela do mesmo indo-europeu.'},
+{nl:'schaap', origin:'germanico', pt:'ovelha', en:'sheep', de:'Schaf', source:'Proto-germ. *skēpą'},
+{nl:'varken', origin:'germanico', pt:'porco', en:'pig', de:'Schwein', source:'Proto-germ. *farhaz', note:'Relacionado a \'farrow\' em inglês (leitegada).'},
+{nl:'vogel', origin:'germanico', pt:'pássaro', en:'bird', de:'Vogel', source:'Proto-germ. *fuglaz'},
+{nl:'muis', origin:'germanico', pt:'rato/camundongo', en:'mouse', de:'Maus', source:'Proto-germ. *mūs'},
+{nl:'wolf', origin:'germanico', pt:'lobo', en:'wolf', de:'Wolf', source:'Proto-germ. *wulfaz'},
+{nl:'beer', origin:'germanico', pt:'urso', en:'bear', de:'Bär', source:'Proto-germ. *berô'},
+{nl:'hert', origin:'germanico', pt:'cervo', en:'deer', de:'Hirsch', source:'Proto-germ. *herutaz'},
+{nl:'rood', origin:'germanico', pt:'vermelho', en:'red', de:'rot', source:'Proto-germ. *raudaz'},
+{nl:'geel', origin:'germanico', pt:'amarelo', en:'yellow', de:'gelb', source:'Proto-germ. *gelwaz'},
+{nl:'bruin', origin:'germanico', pt:'marrom', en:'brown', de:'braun', source:'Proto-germ. *brūnaz'},
+{nl:'grijs', origin:'germanico', pt:'cinza', en:'grey', de:'grau', source:'Proto-germ. *grīwaz'},
+{nl:'blauw', origin:'germanico', pt:'azul', en:'blue', de:'blau', source:'Proto-germ. *blēwaz', note:'Curiosidade: o francês antigo tomou emprestado este mesmo termo germânico (\'bleu\'), que depois deu origem a formas em outras línguas românicas.'},
+{nl:'eten', origin:'germanico', pt:'comer', en:'eat', de:'essen', source:'Proto-germ. *etaną'},
+{nl:'drinken', origin:'germanico', pt:'beber', en:'drink', de:'trinken', source:'Proto-germ. *drinkaną'},
+{nl:'geven', origin:'germanico', pt:'dar', en:'give', de:'geben', source:'Proto-germ. *gebaną'},
+{nl:'nemen', origin:'germanico', pt:'pegar/tomar', en:'take', de:'nehmen', source:'Proto-germ. *nemaną'},
+{nl:'komen', origin:'germanico', pt:'vir', en:'come', de:'kommen', source:'Proto-germ. *kwemaną'},
+{nl:'gaan', origin:'germanico', pt:'ir', en:'go', de:'gehen', source:'Proto-germ. *gāną'},
+{nl:'staan', origin:'germanico', pt:'ficar em pé', en:'stand', de:'stehen', source:'Proto-germ. *stāną'},
+{nl:'zitten', origin:'germanico', pt:'sentar', en:'sit', de:'sitzen', source:'Proto-germ. *sitjaną'},
+{nl:'liggen', origin:'germanico', pt:'estar deitado', en:'lie (recline)', de:'liegen', source:'Proto-germ. *ligjaną'},
+{nl:'maken', origin:'germanico', pt:'fazer', en:'make', de:'machen', source:'Proto-germ. *makōną'},
+{nl:'weten', origin:'germanico', pt:'saber', en:'know', de:'wissen', source:'Proto-germ. *witaną'},
+{nl:'denken', origin:'germanico', pt:'pensar', en:'think', de:'denken', source:'Proto-germ. *þankijaną'},
+{nl:'zeggen', origin:'germanico', pt:'dizer', en:'say', de:'sagen', source:'Proto-germ. *sagjaną'},
+{nl:'spreken', origin:'germanico', pt:'falar', en:'speak', de:'sprechen', source:'Proto-germ. *sprekaną'},
+{nl:'lezen', origin:'germanico', pt:'ler', en:'read', de:'lesen', source:'Proto-germ. *lesaną', note:'Sentido original de \'colher, reunir\' (como colher letras) — parente próximo do alemão \'lesen\'.'},
+{nl:'helpen', origin:'germanico', pt:'ajudar', en:'help', de:'helfen', source:'Proto-germ. *helpaną'},
+{nl:'werken', origin:'germanico', pt:'trabalhar', en:'work', de:'wirken', source:'Proto-germ. *wirkijaną'},
+{nl:'spelen', origin:'germanico', pt:'brincar/jogar', en:'play', de:'spielen', source:'Proto-germ. *spilaną'},
+{nl:'lopen', origin:'germanico', pt:'andar/correr', en:'walk/run', de:'laufen', source:'Proto-germ. *hlaupaną'},
+{nl:'vallen', origin:'germanico', pt:'cair', en:'fall', de:'fallen', source:'Proto-germ. *fallaną'},
+{nl:'vinden', origin:'germanico', pt:'encontrar', en:'find', de:'finden', source:'Proto-germ. *finþaną'},
+{nl:'houden', origin:'germanico', pt:'segurar/manter', en:'hold', de:'halten', source:'Proto-germ. *haldaną'},
+{nl:'brengen', origin:'germanico', pt:'trazer', en:'bring', de:'bringen', source:'Proto-germ. *bringaną'},
+{nl:'dragen', origin:'germanico', pt:'carregar/vestir', en:'carry/wear', de:'tragen', source:'Proto-germ. *draganą', note:'Cognato do inglês \'drag\' (arrastar), não de \'carry\'.'},
+{nl:'breken', origin:'germanico', pt:'quebrar', en:'break', de:'brechen', source:'Proto-germ. *brekaną'},
+{nl:'open', origin:'germanico', pt:'aberto', en:'open', de:'offen', source:'Proto-germ. *upanaz'},
+{nl:'goed', origin:'germanico', pt:'bom', en:'good', de:'gut', source:'Proto-germ. *gōdaz'},
+{nl:'slecht', origin:'germanico', pt:'ruim', en:'bad', de:'schlecht', source:'Proto-germ. *slihtaz', note:'Sentido original neutro de \'liso, simples\' — o significado negativo é desenvolvimento posterior.'},
+{nl:'groot', origin:'germanico', pt:'grande', en:'big', de:'groß', source:'Proto-germ. *grautaz'},
+{nl:'klein', origin:'germanico', pt:'pequeno', en:'small', de:'klein', source:'Proto-germ. *klainaz', note:'Cognato do inglês \'clean\' — sentido original de \'fino, delicado\', não \'limpo\'.'},
+{nl:'oud', origin:'germanico', pt:'velho', en:'old', de:'alt', source:'Proto-germ. *aldaz'},
+{nl:'jong', origin:'germanico', pt:'jovem', en:'young', de:'jung', source:'Proto-germ. *jungaz'},
+{nl:'nieuw', origin:'germanico', pt:'novo', en:'new', de:'neu', source:'Proto-germ. *newjaz'},
+{nl:'lang', origin:'germanico', pt:'longo', en:'long', de:'lang', source:'Proto-germ. *langaz'},
+{nl:'hoog', origin:'germanico', pt:'alto', en:'high', de:'hoch', source:'Proto-germ. *hauhaz'},
+{nl:'laag', origin:'germanico', pt:'baixo', en:'low', de:'niedrig', source:'Proto-germ. *lēgaz (via nórdico antigo)'},
+{nl:'snel', origin:'germanico', pt:'rápido', en:'fast', de:'schnell', source:'Proto-germ. *snellaz'},
+{nl:'warm', origin:'germanico', pt:'quente', en:'warm', de:'warm', source:'PIE *gʷʰer-', note:'Cognato distante do latim \'formus\' (morno) — outro exemplo de parentesco indo-europeu além da Lei de Grimm.'},
+{nl:'koud', origin:'germanico', pt:'frio', en:'cold', de:'kalt', source:'Proto-germ. *kaldaz'},
+{nl:'sterk', origin:'germanico', pt:'forte', en:'strong', de:'stark', source:'Proto-germ. *strangaz'},
+{nl:'vol', origin:'germanico', pt:'cheio', en:'full', de:'voll', source:'Proto-germ. *fullaz'},
+{nl:'licht', origin:'germanico', pt:'leve / claro', en:'light', de:'leicht / licht', source:'Proto-germ. *linhtaz / *leuhtą', note:'Duas raízes germânicas diferentes coincidem na mesma palavra holandesa: \'leve\' (peso) e \'claro\' (luz).'},
+{nl:'deur', origin:'germanico', pt:'porta', en:'door', de:'Tür', source:'Proto-germ. *durz'},
+{nl:'raam', origin:'germanico', pt:'janela', en:'window', de:'Fenster', source:'Proto-germ. *ramô', note:'Alemão prefere \'Fenster\', de origem latina (fenestra) — outro exemplo de dois \'circuitos\' de vocabulário.'},
+{nl:'dak', origin:'germanico', pt:'telhado', en:'roof', de:'Dach', source:'Proto-germ. *þaką'},
+{nl:'vloer', origin:'germanico', pt:'chão/piso', en:'floor', de:'Flur', source:'Proto-germ. *flōruz'},
+{nl:'wand', origin:'germanico', pt:'parede (interna)', en:'wall (partition)', de:'Wand', source:'Proto-germ. *wandiz'},
+{nl:'stoel', origin:'germanico', pt:'cadeira', en:'chair', de:'Stuhl', source:'Proto-germ. *stōlaz', note:'Cognato do inglês \'stool\' (banquinho) — em holandês e alemão o sentido se manteve amplo, \'cadeira\'.'},
+{nl:'bed', origin:'germanico', pt:'cama', en:'bed', de:'Bett', source:'Proto-germ. *badją'},
+{nl:'dekken', origin:'germanico', pt:'cobrir', en:'cover', de:'decken', source:'Proto-germ. *þakjaną'},
+{nl:'jaar', origin:'germanico', pt:'ano', en:'year', de:'Jahr', source:'Proto-germ. *jērą'},
+{nl:'maand', origin:'germanico', pt:'mês', en:'month', de:'Monat', source:'Proto-germ. *mēnōþs'},
+{nl:'week', origin:'germanico', pt:'semana', en:'week', de:'Woche', source:'Proto-germ. *wikǭ'},
+{nl:'morgen', origin:'germanico', pt:'manhã / amanhã', en:'morning / tomorrow', de:'Morgen', source:'Proto-germ. *murganaz'},
+{nl:'avond', origin:'germanico', pt:'noite (entardecer)', en:'evening', de:'Abend', source:'Proto-germ. *ēbanþs'},
+{nl:'naam', origin:'germanico', pt:'nome', en:'name', de:'Name', source:'Proto-germ. *namô'},
+{nl:'woord', origin:'germanico', pt:'palavra', en:'word', de:'Wort', source:'Proto-germ. *wurdą'},
+{nl:'taal', origin:'germanico', pt:'língua (idioma)', en:'language', de:'Sprache', source:'Proto-germ. *talō', note:'Cognato do inglês \'tale\' (conto) e \'tell\' (contar) — sentido de \'discurso, contagem\'.'},
+{nl:'land', origin:'germanico', pt:'terra/país', en:'land', de:'Land', source:'Proto-germ. *landą'},
+{nl:'stad', origin:'germanico', pt:'cidade', en:'city', de:'Stadt', source:'Proto-germ. *stadiz', note:'Cognato do inglês \'stead\' (lugar) — \'homestead\', \'instead\'.'},
+{nl:'dorp', origin:'germanico', pt:'aldeia/vilarejo', en:'village', de:'Dorf', source:'Proto-germ. *þurpą', note:'Cognato do inglês arcaico \'thorp\'.'},
+{nl:'weg', origin:'germanico', pt:'caminho', en:'way/road', de:'Weg', source:'Proto-germ. *wegaz'},
+{nl:'brug', origin:'germanico', pt:'ponte', en:'bridge', de:'Brücke', source:'Proto-germ. *brugjō'},
+{nl:'faculteit', origin:'latim', pt:'faculdade', en:'faculty', de:'Fakultät', source:'Latim facultas'},
+{nl:'professor', origin:'latim', pt:'professor', en:'professor', de:'Professor', source:'Latim professor'},
+{nl:'student', origin:'latim', pt:'estudante', en:'student', de:'Student', source:'Latim studens'},
+{nl:'studie', origin:'latim', pt:'estudo', en:'study', de:'Studium', source:'Latim studium'},
+{nl:'studeren', origin:'latim', pt:'estudar', en:'to study', de:'studieren', source:'Latim studere'},
+{nl:'examen', origin:'latim', pt:'exame', en:'exam', de:'Prüfung', source:'Latim examen'},
+{nl:'cursus', origin:'latim', pt:'curso', en:'course', de:'Kurs', source:'Latim cursus'},
+{nl:'tekst', origin:'latim', pt:'texto', en:'text', de:'Text', source:'Latim textus'},
+{nl:'letter', origin:'latim', pt:'letra', en:'letter', de:'Buchstabe', source:'Latim littera'},
+{nl:'lijn', origin:'latim', pt:'linha', en:'line', de:'Linie', source:'Latim linea'},
+{nl:'figuur', origin:'latim', pt:'figura', en:'figure', de:'Figur', source:'Latim figura'},
+{nl:'natuur', origin:'latim', pt:'natureza', en:'nature', de:'Natur', source:'Latim natura', family:'uur'},
+{nl:'structuur', origin:'latim', pt:'estrutura', en:'structure', de:'Struktur', source:'Latim structura', family:'uur'},
+{nl:'literatuur', origin:'latim', pt:'literatura', en:'literature', de:'Literatur', source:'Latim litteratura', family:'uur'},
+{nl:'temperatuur', origin:'latim', pt:'temperatura', en:'temperature', de:'Temperatur', source:'Latim temperatura', family:'uur'},
+{nl:'architectuur', origin:'latim', pt:'arquitetura', en:'architecture', de:'Architektur', source:'Grego arkhitekton (via latim architectura)'},
+{nl:'justitie', origin:'latim', pt:'justiça', en:'justice', de:'Justiz', source:'Latim justitia'},
+{nl:'constitutie', origin:'latim', pt:'constituição', en:'constitution', de:'Konstitution', source:'Latim constitutio'},
+{nl:'regeren', origin:'latim', pt:'governar/reger', en:'to govern', de:'regieren', source:'Latim regere'},
+{nl:'president', origin:'latim', pt:'presidente', en:'president', de:'Präsident', source:'Latim praesidens'},
+{nl:'senaat', origin:'latim', pt:'senado', en:'senate', de:'Senat', source:'Latim senatus'},
+{nl:'republiek', origin:'latim', pt:'república', en:'republic', de:'Republik', source:'Latim res publica'},
+{nl:'advocaat', origin:'latim', pt:'advogado', en:'lawyer', de:'Advokat', source:'Latim advocatus'},
+{nl:'contract', origin:'latim', pt:'contrato', en:'contract', de:'Vertrag', source:'Latim contractus'},
+{nl:'document', origin:'latim', pt:'documento', en:'document', de:'Dokument', source:'Latim documentum'},
+{nl:'registreren', origin:'latim', pt:'registrar', en:'to register', de:'registrieren', source:'Latim registrare'},
+{nl:'administratie', origin:'latim', pt:'administração', en:'administration', de:'Verwaltung', source:'Latim administratio'},
+{nl:'secretaris', origin:'latim', pt:'secretário', en:'secretary', de:'Sekretär', source:'Latim secretarius'},
+{nl:'religie', origin:'latim', pt:'religião', en:'religion', de:'Religion', source:'Latim religio'},
+{nl:'altaar', origin:'latim', pt:'altar', en:'altar', de:'Altar', source:'Latim altare'},
+{nl:'testament', origin:'latim', pt:'testamento', en:'testament', de:'Testament', source:'Latim testamentum'},
+{nl:'sacrament', origin:'latim', pt:'sacramento', en:'sacrament', de:'Sakrament', source:'Latim sacramentum'},
+{nl:'legende', origin:'latim', pt:'lenda', en:'legend', de:'Legende', source:'Latim legenda ("coisas a serem lidas")'},
+{nl:'paard', origin:'latim', pt:'cavalo', en:'horse', de:'Pferd', source:'Latim vulgar paraveredus', note:'Curiosidade: paraveredus (cavalo de posta) também deu origem a \'palefreneiro\' em português — um empréstimo raro do latim para o vocabulário mais básico do holandês.'},
+{nl:'plant', origin:'latim', pt:'planta', en:'plant', de:'Pflanze', source:'Latim planta'},
+{nl:'fruit', origin:'latim', pt:'fruta', en:'fruit', de:'Frucht', source:'Latim fructus'},
+{nl:'fontein', origin:'latim', pt:'fonte', en:'fountain', de:'Brunnen', source:'Latim fontana'},
+{nl:'mineraal', origin:'latim', pt:'mineral', en:'mineral', de:'Mineral', source:'Latim mineralis'},
+{nl:'metaal', origin:'latim', pt:'metal', en:'metal', de:'Metall', source:'Grego metallon (via latim metallum)'},
+{nl:'vegetatie', origin:'latim', pt:'vegetação', en:'vegetation', de:'Vegetation', source:'Latim vegetatio'},
+{nl:'seconde', origin:'latim', pt:'segundo', en:'second', de:'Sekunde', source:'Latim secunda'},
+{nl:'uur', origin:'latim', pt:'hora', en:'hour', de:'Stunde', source:'Latim hora'},
+{nl:'kalender', origin:'latim', pt:'calendário', en:'calendar', de:'Kalender', source:'Latim calendarium'},
+{nl:'persoon', origin:'latim', pt:'pessoa', en:'person', de:'Person', source:'Latim persona'},
+{nl:'populatie', origin:'latim', pt:'população', en:'population', de:'Bevölkerung', source:'Latim populatio'},
+{nl:'individu', origin:'latim', pt:'indivíduo', en:'individual', de:'Individuum', source:'Latim individuum'},
+{nl:'sociaal', origin:'latim', pt:'social', en:'social', de:'sozial', source:'Latim socialis'},
+{nl:'moraal', origin:'latim', pt:'moral', en:'moral', de:'Moral', source:'Latim moralis'},
+{nl:'formeel', origin:'latim', pt:'formal', en:'formal', de:'formell', source:'Latim formalis'},
+{nl:'informeel', origin:'latim', pt:'informal', en:'informal', de:'informell', source:'Latim informalis'},
+{nl:'reëel', origin:'latim', pt:'real', en:'real', de:'real', source:'Latim realis'},
+{nl:'speciaal', origin:'latim', pt:'especial', en:'special', de:'speziell', source:'Latim specialis'},
+{nl:'project', origin:'latim', pt:'projeto', en:'project', de:'Projekt', source:'Latim projectum'},
+{nl:'object', origin:'latim', pt:'objeto', en:'object', de:'Objekt', source:'Latim objectum'},
+{nl:'subject', origin:'latim', pt:'sujeito', en:'subject', de:'Subjekt', source:'Latim subjectum'},
+{nl:'resultaat', origin:'latim', pt:'resultado', en:'result', de:'Resultat', source:'Latim resultatum'},
+{nl:'instrument', origin:'latim', pt:'instrumento', en:'instrument', de:'Instrument', source:'Latim instrumentum'},
+{nl:'element', origin:'latim', pt:'elemento', en:'element', de:'Element', source:'Latim elementum'},
+{nl:'materiaal', origin:'latim', pt:'material', en:'material', de:'Material', source:'Latim materialis'},
+{nl:'origineel', origin:'latim', pt:'original', en:'original', de:'original', source:'Latim originalis'},
+{nl:'finaal', origin:'latim', pt:'final', en:'final', de:'final', source:'Latim finalis'},
+{nl:'totaal', origin:'latim', pt:'total', en:'total', de:'total', source:'Latim totalis'},
+{nl:'actueel', origin:'latim', pt:'atual', en:'current', de:'aktuell', source:'Latim actualis'},
+{nl:'eventueel', origin:'latim', pt:'eventual', en:'possibly', de:'eventuell', source:'Latim eventualis'},
+{nl:'potentieel', origin:'latim', pt:'potencial', en:'potential', de:'potenziell', source:'Latim potentialis'},
+{nl:'essentieel', origin:'latim', pt:'essencial', en:'essential', de:'essenziell', source:'Latim essentialis'},
+{nl:'constant', origin:'latim', pt:'constante', en:'constant', de:'konstant', source:'Latim constans'},
+{nl:'permanent', origin:'latim', pt:'permanente', en:'permanent', de:'permanent', source:'Latim permanens'},
+{nl:'privé', origin:'latim', pt:'privado', en:'private', de:'privat', source:'Latim privatus'},
+{nl:'publiek', origin:'latim', pt:'público', en:'public', de:'öffentlich', source:'Latim publicus'},
+{nl:'civiel', origin:'latim', pt:'civil', en:'civil', de:'zivil', source:'Latim civilis'},
+{nl:'legaal', origin:'latim', pt:'legal', en:'legal', de:'legal', source:'Latim legalis'},
+{nl:'illegaal', origin:'latim', pt:'ilegal', en:'illegal', de:'illegal', source:'Latim illegalis'},
+{nl:'centraal', origin:'latim', pt:'central', en:'central', de:'zentral', source:'Latim centralis'},
+{nl:'lokaal', origin:'latim', pt:'local', en:'local', de:'lokal', source:'Latim localis'},
+{nl:'globaal', origin:'latim', pt:'global', en:'global', de:'global', source:'Latim globalis'},
+{nl:'mondiaal', origin:'latim', pt:'mundial', en:'worldwide', de:'weltweit', source:'Latim mundialis'},
+{nl:'universeel', origin:'latim', pt:'universal', en:'universal', de:'universell', source:'Latim universalis'},
+{nl:'individueel', origin:'latim', pt:'individual (adj.)', en:'individual (adj.)', de:'individuell', source:'Latim individualis'},
+{nl:'commercieel', origin:'latim', pt:'comercial', en:'commercial', de:'kommerziell', source:'Latim commercialis'},
+{nl:'industrie', origin:'latim', pt:'indústria', en:'industry', de:'Industrie', source:'Latim industria'},
+{nl:'industrieel', origin:'latim', pt:'industrial', en:'industrial', de:'industriell', source:'Latim industrialis'},
+{nl:'productie', origin:'latim', pt:'produção', en:'production', de:'Produktion', source:'Latim productio'},
+{nl:'produceren', origin:'latim', pt:'produzir', en:'to produce', de:'produzieren', source:'Latim producere'},
+{nl:'reduceren', origin:'latim', pt:'reduzir', en:'to reduce', de:'reduzieren', source:'Latim reducere'},
+{nl:'reductie', origin:'latim', pt:'redução', en:'reduction', de:'Reduktion', source:'Latim reductio'},
+{nl:'introduceren', origin:'latim', pt:'introduzir', en:'to introduce', de:'einführen', source:'Latim introducere'},
+{nl:'construeren', origin:'latim', pt:'construir', en:'to construct', de:'konstruieren', source:'Latim construere'},
+{nl:'constructie', origin:'latim', pt:'construção', en:'construction', de:'Konstruktion', source:'Latim constructio'},
+{nl:'destructie', origin:'latim', pt:'destruição', en:'destruction', de:'Zerstörung', source:'Latim destructio'},
+{nl:'instructie', origin:'latim', pt:'instrução', en:'instruction', de:'Anweisung', source:'Latim instructio'},
+{nl:'instrueren', origin:'latim', pt:'instruir', en:'to instruct', de:'instruieren', source:'Latim instruere'},
+{nl:'inspecteren', origin:'latim', pt:'inspecionar', en:'to inspect', de:'inspizieren', source:'Latim inspicere'},
+{nl:'inspectie', origin:'latim', pt:'inspeção', en:'inspection', de:'Inspektion', source:'Latim inspectio'},
+{nl:'respecteren', origin:'latim', pt:'respeitar', en:'to respect', de:'respektieren', source:'Latim respectare'},
+{nl:'respect', origin:'latim', pt:'respeito', en:'respect', de:'Respekt', source:'Latim respectus'},
+{nl:'correct', origin:'latim', pt:'correto', en:'correct', de:'korrekt', source:'Latim correctus'},
+{nl:'corrigeren', origin:'latim', pt:'corrigir', en:'to correct', de:'korrigieren', source:'Latim corrigere'},
+{nl:'correctie', origin:'latim', pt:'correção', en:'correction', de:'Korrektur', source:'Latim correctio'},
+{nl:'perfect', origin:'latim', pt:'perfeito', en:'perfect', de:'perfekt', source:'Latim perfectus'},
+{nl:'effect', origin:'latim', pt:'efeito', en:'effect', de:'Effekt', source:'Latim effectus'},
+{nl:'actief', origin:'latim', pt:'ativo', en:'active', de:'aktiv', source:'Latim activus'},
+{nl:'passief', origin:'latim', pt:'passivo', en:'passive', de:'passiv', source:'Latim passivus'},
+{nl:'positief', origin:'latim', pt:'positivo', en:'positive', de:'positiv', source:'Latim positivus'},
+{nl:'negatief', origin:'latim', pt:'negativo', en:'negative', de:'negativ', source:'Latim negativus'},
+{nl:'relatief', origin:'latim', pt:'relativo', en:'relative', de:'relativ', source:'Latim relativus'},
+{nl:'creatief', origin:'latim', pt:'criativo', en:'creative', de:'kreativ', source:'Latim creativus'},
+{nl:'creeren', origin:'latim', pt:'criar', en:'to create', de:'erschaffen', source:'Latim creare'},
+{nl:'creatie', origin:'latim', pt:'criação', en:'creation', de:'Schöpfung', source:'Latim creatio'},
+{nl:'traditie', origin:'latim', pt:'tradição', en:'tradition', de:'Tradition', source:'Latim traditio'},
+{nl:'traditioneel', origin:'latim', pt:'tradicional', en:'traditional', de:'traditionell', source:'Latim traditionalis'},
+{nl:'conditie', origin:'latim', pt:'condição', en:'condition', de:'Bedingung', source:'Latim conditio'},
+{nl:'situatie', origin:'latim', pt:'situação', en:'situation', de:'Situation', source:'Latim situatio'},
+{nl:'positie', origin:'latim', pt:'posição', en:'position', de:'Position', source:'Latim positio'},
+{nl:'functie', origin:'latim', pt:'função', en:'function', de:'Funktion', source:'Latim functio'},
+{nl:'functioneren', origin:'latim', pt:'funcionar', en:'to function', de:'funktionieren', source:'Latim functionare'},
+{nl:'actie', origin:'latim', pt:'ação', en:'action', de:'Aktion', source:'Latim actio'},
+{nl:'reactie', origin:'latim', pt:'reação', en:'reaction', de:'Reaktion', source:'Latim reactio'},
+{nl:'reageren', origin:'latim', pt:'reagir', en:'to react', de:'reagieren', source:'Latim reagere'},
+{nl:'interactie', origin:'latim', pt:'interação', en:'interaction', de:'Interaktion', source:'Latim interactio'},
+{nl:'operatie', origin:'latim', pt:'operação', en:'operation', de:'Operation', source:'Latim operatio'},
+{nl:'opereren', origin:'latim', pt:'operar', en:'to operate', de:'operieren', source:'Latim operari'},
+{nl:'generatie', origin:'latim', pt:'geração', en:'generation', de:'Generation', source:'Latim generatio'},
+{nl:'genereren', origin:'latim', pt:'gerar', en:'to generate', de:'generieren', source:'Latim generare'},
+{nl:'observatie', origin:'latim', pt:'observação', en:'observation', de:'Beobachtung', source:'Latim observatio'},
+{nl:'observeren', origin:'latim', pt:'observar', en:'to observe', de:'beobachten', source:'Latim observare'},
+{nl:'conserveren', origin:'latim', pt:'conservar', en:'to preserve', de:'konservieren', source:'Latim conservare'},
+{nl:'declaratie', origin:'latim', pt:'declaração', en:'declaration', de:'Erklärung', source:'Latim declaratio'},
+{nl:'declareren', origin:'latim', pt:'declarar', en:'to declare', de:'erklären', source:'Latim declarare'},
+{nl:'participeren', origin:'latim', pt:'participar', en:'to participate', de:'teilnehmen', source:'Latim participare'},
+{nl:'participatie', origin:'latim', pt:'participação', en:'participation', de:'Teilnahme', source:'Latim participatio'},
+{nl:'communiceren', origin:'latim', pt:'comunicar', en:'to communicate', de:'kommunizieren', source:'Latim communicare'},
+{nl:'communicatie', origin:'latim', pt:'comunicação', en:'communication', de:'Kommunikation', source:'Latim communicatio'},
+{nl:'connectie', origin:'latim', pt:'conexão', en:'connection', de:'Verbindung', source:'Latim connectio'},
+{nl:'contact', origin:'latim', pt:'contato', en:'contact', de:'Kontakt', source:'Latim contactus'},
+{nl:'contacteren', origin:'latim', pt:'contatar', en:'to contact', de:'kontaktieren', source:'Latim contactare'},
+{nl:'consumeren', origin:'latim', pt:'consumir', en:'to consume', de:'konsumieren', source:'Latim consumere'},
+{nl:'consumptie', origin:'latim', pt:'consumo', en:'consumption', de:'Konsum', source:'Latim consumptio'},
+{nl:'exporteren', origin:'latim', pt:'exportar', en:'to export', de:'exportieren', source:'Latim exportare'},
+{nl:'export', origin:'latim', pt:'exportação', en:'export', de:'Export', source:'Latim exportatio'},
+{nl:'importeren', origin:'latim', pt:'importar', en:'to import', de:'importieren', source:'Latim importare'},
+{nl:'import', origin:'latim', pt:'importação', en:'import', de:'Import', source:'Latim importatio'},
+{nl:'transporteren', origin:'latim', pt:'transportar', en:'to transport', de:'transportieren', source:'Latim transportare'},
+{nl:'transport', origin:'latim', pt:'transporte', en:'transport', de:'Transport', source:'Latim transportus'},
+{nl:'reserveren', origin:'latim', pt:'reservar', en:'to reserve', de:'reservieren', source:'Latim reservare'},
+{nl:'reservering', origin:'latim', pt:'reserva', en:'reservation', de:'Reservierung', source:'Latim reservatio'},
+{nl:'formuleren', origin:'latim', pt:'formular', en:'to formulate', de:'formulieren', source:'Latim formulare'},
+{nl:'formulier', origin:'latim', pt:'formulário', en:'form (document)', de:'Formular', source:'Latim formularium'},
+{nl:'nummer', origin:'latim', pt:'número', en:'number', de:'Nummer', source:'Latim numerus'},
+{nl:'numeriek', origin:'latim', pt:'numérico', en:'numeric', de:'numerisch', source:'Latim numericus'},
+{nl:'les', origin:'frances', pt:'lição/aula', en:'lesson', de:'Lektion', source:'Francês leçon (< latim lectio)'},
+{nl:'avontuur', origin:'frances', pt:'aventura', en:'adventure', de:'Abenteuer', source:'Francês aventure (< latim adventura)'},
+{nl:'rivier', origin:'frances', pt:'rio', en:'river', de:'Fluss', source:'Francês rivière (< latim riparius)'},
+{nl:'militair', origin:'frances', pt:'militar', en:'military', de:'militärisch', source:'Francês militaire (< latim militaris)'},
+{nl:'tante', origin:'frances', pt:'tia', en:'aunt', de:'Tante', source:'Francês tante'},
+{nl:'juweel', origin:'frances', pt:'joia', en:'jewel', de:'Juwel', source:'Francês joyau'},
+{nl:'mode', origin:'frances', pt:'moda', en:'fashion', de:'Mode', source:'Francês mode (< latim modus)'},
+{nl:'jas', origin:'frances', pt:'casaco', en:'coat', de:'Jacke', source:'Francês jaque/casaque'},
+{nl:'sjaal', origin:'frances', pt:'xale', en:'shawl', de:'Schal', source:'Francês châle'},
+{nl:'parfum', origin:'frances', pt:'perfume', en:'perfume', de:'Parfüm', source:'Francês parfum (< latim per fumum)'},
+{nl:'blouse', origin:'frances', pt:'blusa', en:'blouse', de:'Bluse', source:'Francês blouse'},
+{nl:'kostuum', origin:'frances', pt:'traje/fantasia', en:'costume', de:'Kostüm', source:'Francês costume'},
+{nl:'salade', origin:'frances', pt:'salada', en:'salad', de:'Salat', source:'Francês salade'},
+{nl:'saus', origin:'frances', pt:'molho', en:'sauce', de:'Soße', source:'Francês sauce (< latim salsa)'},
+{nl:'soep', origin:'frances', pt:'sopa', en:'soup', de:'Suppe', source:'Francês soupe', note:'Curiosidade: o francês antigo tomou essa palavra de uma raiz germânica — ela \'voltou\' ao holandês transformada.'},
+{nl:'dessert', origin:'frances', pt:'sobremesa', en:'dessert', de:'Nachtisch', source:'Francês dessert'},
+{nl:'menu', origin:'frances', pt:'cardápio', en:'menu', de:'Menü', source:'Francês menu'},
+{nl:'chocolade', origin:'frances', pt:'chocolate', en:'chocolate', de:'Schokolade', source:'Francês chocolat (< náuatle, via espanhol)'},
+{nl:'karton', origin:'frances', pt:'papelão', en:'cardboard', de:'Karton', source:'Francês carton (< italiano cartone)'},
+{nl:'bagage', origin:'frances', pt:'bagagem', en:'luggage', de:'Gepäck', source:'Francês bagage'},
+{nl:'adres', origin:'frances', pt:'endereço', en:'address', de:'Adresse', source:'Francês adresse'},
+{nl:'plezier', origin:'frances', pt:'prazer', en:'pleasure', de:'Vergnügen', source:'Francês plaisir'},
+{nl:'detail', origin:'frances', pt:'detalhe', en:'detail', de:'Detail', source:'Francês détail'},
+{nl:'niveau', origin:'frances', pt:'nível', en:'level', de:'Niveau', source:'Francês niveau'},
+{nl:'balans', origin:'frances', pt:'balanço', en:'balance', de:'Balance', source:'Francês balance'},
+{nl:'controle', origin:'frances', pt:'controle', en:'control', de:'Kontrolle', source:'Francês contrôle'},
+{nl:'genre', origin:'frances', pt:'gênero', en:'genre', de:'Genre', source:'Francês genre'},
+{nl:'toilet', origin:'frances', pt:'banheiro/toalete', en:'toilet', de:'Toilette', source:'Francês toilette'},
+{nl:'hotel', origin:'frances', pt:'hotel', en:'hotel', de:'Hotel', source:'Francês hôtel (< latim hospitale)', note:'Mesmo étimo latino de \'hospitaal\' — dois empréstimos diferentes da mesma raiz, em épocas distintas.', family:'hospitale'},
+{nl:'cadeau', origin:'frances', pt:'presente', en:'gift', de:'Geschenk', source:'Francês cadeau'},
+{nl:'kans', origin:'frances', pt:'chance', en:'chance', de:'Chance', source:'Francês chance (< latim cadentia)'},
+{nl:'bizar', origin:'frances', pt:'bizarro', en:'bizarre', de:'bizarr', source:'Francês bizarre'},
+{nl:'talent', origin:'frances', pt:'talento', en:'talent', de:'Talent', source:'Francês talent (< grego talanton)'},
+{nl:'route', origin:'frances', pt:'rota', en:'route', de:'Route', source:'Francês route (< latim rupta)'},
+{nl:'chauffeur', origin:'frances', pt:'motorista', en:'driver', de:'Chauffeur', source:'Francês chauffeur'},
+{nl:'camping', origin:'frances', pt:'acampamento', en:'campsite', de:'Campingplatz', source:'Francês/inglês camping (< campagne)'},
+{nl:'terras', origin:'frances', pt:'terraço', en:'terrace', de:'Terrasse', source:'Francês terrasse (< latim terra)'},
+{nl:'balkon', origin:'frances', pt:'varanda/sacada', en:'balcony', de:'Balkon', source:'Francês balcon (< italiano balcone)'},
+{nl:'etalage', origin:'frances', pt:'vitrine', en:'shop window', de:'Auslage', source:'Francês étalage'},
+{nl:'plein', origin:'frances', pt:'praça', en:'square (plaza)', de:'Platz', source:'Francês plein'},
+{nl:'dame', origin:'frances', pt:'dama', en:'lady', de:'Dame', source:'Francês dame (< latim domina)'},
+{nl:'bibliotheek', origin:'grego', pt:'biblioteca', en:'library', de:'Bibliothek', source:'Grego bibliothēkē'},
+{nl:'diploma', origin:'grego', pt:'diploma', en:'diploma', de:'Diplom', source:'Grego diploma'},
+{nl:'probleem', origin:'grego', pt:'problema', en:'problem', de:'Problem', source:'Grego problema'},
+{nl:'systeem', origin:'grego', pt:'sistema', en:'system', de:'System', source:'Grego systēma'},
+{nl:'programma', origin:'grego', pt:'programa', en:'program', de:'Programm', source:'Grego programma'},
+{nl:'theorie', origin:'grego', pt:'teoria', en:'theory', de:'Theorie', source:'Grego theōria'},
+{nl:'praktijk', origin:'grego', pt:'prática', en:'practice', de:'Praxis', source:'Grego praktikē'},
+{nl:'methode', origin:'grego', pt:'método', en:'method', de:'Methode', source:'Grego methodos'},
+{nl:'analyse', origin:'grego', pt:'análise', en:'analysis', de:'Analyse', source:'Grego analysis'},
+{nl:'synthese', origin:'grego', pt:'síntese', en:'synthesis', de:'Synthese', source:'Grego synthesis'},
+{nl:'drama', origin:'grego', pt:'drama', en:'drama', de:'Drama', source:'Grego drama'},
+{nl:'dialoog', origin:'grego', pt:'diálogo', en:'dialogue', de:'Dialog', source:'Grego dialogos'},
+{nl:'monoloog', origin:'grego', pt:'monólogo', en:'monologue', de:'Monolog', source:'Grego monologos'},
+{nl:'episode', origin:'grego', pt:'episódio', en:'episode', de:'Episode', source:'Grego epeisodion'},
+{nl:'periode', origin:'grego', pt:'período', en:'period', de:'Periode', source:'Grego periodos'},
+{nl:'karakter', origin:'grego', pt:'caráter', en:'character', de:'Charakter', source:'Grego kharakter'},
+{nl:'type', origin:'grego', pt:'tipo', en:'type', de:'Typ', source:'Grego typos'},
+{nl:'symbool', origin:'grego', pt:'símbolo', en:'symbol', de:'Symbol', source:'Grego symbolon'},
+{nl:'mythe', origin:'grego', pt:'mito', en:'myth', de:'Mythos', source:'Grego mythos'},
+{nl:'historisch', origin:'grego', pt:'histórico', en:'historical', de:'historisch', source:'Grego historia (via latim)'},
+{nl:'fantasie', origin:'grego', pt:'fantasia', en:'fantasy', de:'Fantasie', source:'Grego phantasia'},
+{nl:'energie', origin:'grego', pt:'energia', en:'energy', de:'Energie', source:'Grego energeia'},
+{nl:'atoom', origin:'grego', pt:'átomo', en:'atom', de:'Atom', source:'Grego atomos'},
+{nl:'planeet', origin:'grego', pt:'planeta', en:'planet', de:'Planet', source:'Grego planetes'},
+{nl:'chaos', origin:'grego', pt:'caos', en:'chaos', de:'Chaos', source:'Grego khaos'},
+{nl:'crisis', origin:'grego', pt:'crise', en:'crisis', de:'Krise', source:'Grego krisis'},
+{nl:'paradox', origin:'grego', pt:'paradoxo', en:'paradox', de:'Paradox', source:'Grego paradoxon'},
+{nl:'ironie', origin:'grego', pt:'ironia', en:'irony', de:'Ironie', source:'Grego eironeia'},
+{nl:'metafoor', origin:'grego', pt:'metáfora', en:'metaphor', de:'Metapher', source:'Grego metaphora'},
+{nl:'dynamiek', origin:'grego', pt:'dinâmica', en:'dynamics', de:'Dynamik', source:'Grego dynamis'},
+{nl:'technologie', origin:'grego', pt:'tecnologia', en:'technology', de:'Technologie', source:'Grego tekhnē + logos'},
+{nl:'psychologie', origin:'grego', pt:'psicologia', en:'psychology', de:'Psychologie', source:'Grego psykhē + logos'},
+{nl:'geografie', origin:'grego', pt:'geografia', en:'geography', de:'Geographie', source:'Grego geō + graphia'},
+{nl:'fotografie', origin:'grego', pt:'fotografia', en:'photography', de:'Fotografie', source:'Grego phōs + graphia'},
+{nl:'telegram', origin:'grego', pt:'telegrama', en:'telegram', de:'Telegramm', source:'Grego tēle + gramma'},
+{nl:'idee', origin:'grego', pt:'ideia', en:'idea', de:'Idee', source:'Grego idea'},
+{nl:'lamp', origin:'grego', pt:'lâmpada', en:'lamp', de:'Lampe', source:'Grego lampas'},
+{nl:'fase', origin:'grego', pt:'fase', en:'phase', de:'Phase', source:'Grego phasis'},
+{nl:'lip', origin:'germanico', pt:'lábio', en:'lip', de:'Lippe', source:'Proto-germ. *lepô'},
+{nl:'keel', origin:'germanico', pt:'garganta', en:'throat', de:'Kehle', source:'Proto-germ. *kelō'},
+{nl:'hals', origin:'germanico', pt:'pescoço', en:'neck', de:'Hals', source:'Proto-germ. *halsaz'},
+{nl:'schouder', origin:'germanico', pt:'ombro', en:'shoulder', de:'Schulter', source:'Proto-germ. *skuldrō'},
+{nl:'borst', origin:'germanico', pt:'peito', en:'chest/breast', de:'Brust', source:'Proto-germ. *breustą'},
+{nl:'buik', origin:'germanico', pt:'barriga', en:'belly', de:'Bauch', source:'Proto-germ. *būkaz'},
+{nl:'vinger', origin:'germanico', pt:'dedo', en:'finger', de:'Finger', source:'Proto-germ. *fingraz'},
+{nl:'nagel', origin:'germanico', pt:'unha', en:'nail', de:'Nagel', source:'Proto-germ. *naglaz'},
+{nl:'haar', origin:'germanico', pt:'cabelo', en:'hair', de:'Haar', source:'Proto-germ. *hērą'},
+{nl:'hersenen', origin:'germanico', pt:'cérebro', en:'brain', de:'Gehirn', source:'Proto-germ. *haznjô'},
+{nl:'long', origin:'germanico', pt:'pulmão', en:'lung', de:'Lunge', source:'Proto-germ. *lungô'},
+{nl:'lever', origin:'germanico', pt:'fígado', en:'liver', de:'Leber', source:'Proto-germ. *librō'},
+{nl:'nier', origin:'germanico', pt:'rim', en:'kidney', de:'Niere', source:'Proto-germ. *neurô'},
+{nl:'maag', origin:'germanico', pt:'estômago', en:'stomach', de:'Magen', source:'Proto-germ. *magô'},
+{nl:'zwemmen', origin:'germanico', pt:'nadar', en:'swim', de:'schwimmen', source:'Proto-germ. *swimmaną'},
+{nl:'vliegen', origin:'germanico', pt:'voar', en:'fly', de:'fliegen', source:'Proto-germ. *fleuganą'},
+{nl:'vechten', origin:'germanico', pt:'lutar', en:'fight', de:'fechten', source:'Proto-germ. *fehtaną'},
+{nl:'zingen', origin:'germanico', pt:'cantar', en:'sing', de:'singen', source:'Proto-germ. *singwaną'},
+{nl:'dansen', origin:'germanico', pt:'dançar', en:'dance', de:'tanzen', source:'Proto-germ./francês antigo *dansōną'},
+{nl:'lachen', origin:'germanico', pt:'rir', en:'laugh', de:'lachen', source:'Proto-germ. *hlahjaną'},
+{nl:'huilen', origin:'germanico', pt:'chorar', en:'cry', de:'heulen', source:'Proto-germ. *hūlōną'},
+{nl:'wassen', origin:'germanico', pt:'lavar', en:'wash', de:'waschen', source:'Proto-germ. *watskaną'},
+{nl:'bakken', origin:'germanico', pt:'assar/fritar', en:'bake', de:'backen', source:'Proto-germ. *bakaną'},
+{nl:'koken', origin:'latim', pt:'cozinhar', en:'cook', de:'kochen', source:'Proto-germ. *kokaną (empréstimo antigo do latim coquere)', note:'Curiosamente, mesmo esta palavra germânica tem uma raiz emprestada do latim \'coquere\' em época muito antiga.'},
+{nl:'snijden', origin:'germanico', pt:'cortar', en:'cut', de:'schneiden', source:'Proto-germ. *snīþaną'},
+{nl:'groeien', origin:'germanico', pt:'crescer', en:'grow', de:'wachsen', source:'Proto-germ. *grōaną'},
+{nl:'sterven', origin:'germanico', pt:'morrer', en:'die', de:'sterben', source:'Proto-germ. *sterbaną'},
+{nl:'doden', origin:'germanico', pt:'matar', en:'kill', de:'töten', source:'Proto-germ. *daudijaną'},
+{nl:'melk', origin:'germanico', pt:'leite', en:'milk', de:'Milch', source:'Proto-germ. *meluks'},
+{nl:'boter', origin:'latim', pt:'manteiga', en:'butter', de:'Butter', source:'Grego boutyron (via latim butyrum)', note:'Rara palavra \'básica\' germânica que na verdade é um empréstimo antigo do grego/latim.'},
+{nl:'ei', origin:'germanico', pt:'ovo', en:'egg', de:'Ei', source:'Proto-germ. *ajją'},
+{nl:'zout', origin:'germanico', pt:'sal', en:'salt', de:'Salz', source:'Proto-germ. *saltą'},
+{nl:'honger', origin:'germanico', pt:'fome', en:'hunger', de:'Hunger', source:'Proto-germ. *hungruz'},
+{nl:'dorst', origin:'germanico', pt:'sede', en:'thirst', de:'Durst', source:'Proto-germ. *þurstuz'},
+{nl:'appel', origin:'germanico', pt:'maçã', en:'apple', de:'Apfel', source:'Proto-germ. *aplaz'},
+{nl:'noot', origin:'germanico', pt:'noz', en:'nut', de:'Nuss', source:'Proto-germ. *hnuts'},
+{nl:'vlees', origin:'germanico', pt:'carne', en:'meat', de:'Fleisch', source:'Proto-germ. *flaiskaz'},
+{nl:'kip', origin:'germanico', pt:'frango/galinha', en:'chicken', de:'Huhn', source:'Proto-germ. *kīukīną (onomatopeico)'},
+{nl:'wol', origin:'germanico', pt:'lã', en:'wool', de:'Wolle', source:'Proto-germ. *wullō'},
+{nl:'leer', origin:'germanico', pt:'couro', en:'leather', de:'Leder', source:'Proto-germ. *lethrą'},
+{nl:'goud', origin:'germanico', pt:'ouro', en:'gold', de:'Gold', source:'Proto-germ. *gulþą'},
+{nl:'zilver', origin:'germanico', pt:'prata', en:'silver', de:'Silber', source:'Proto-germ. *silubrą'},
+{nl:'koper', origin:'germanico', pt:'cobre', en:'copper', de:'Kupfer', source:'Latim cyprium (via proto-germ.)', note:'Nomeado a partir da ilha de Chipre — \'metal de Chipre\' em latim tardio.'},
+{nl:'lood', origin:'germanico', pt:'chumbo', en:'lead', de:'Blei', source:'Proto-germ. *lauda'},
+{nl:'ster', origin:'germanico', pt:'estrela', en:'star', de:'Stern', source:'Proto-germ. *sternô'},
+{nl:'hemel', origin:'germanico', pt:'céu', en:'sky/heaven', de:'Himmel', source:'Proto-germ. *himinaz'},
+{nl:'eiland', origin:'germanico', pt:'ilha', en:'island', de:'Insel', source:'Proto-germ. *awjō + land'},
+{nl:'kust', origin:'germanico', pt:'costa', en:'coast', de:'Küste', source:'Proto-germ. *kustō (via francês antigo, cognato)'},
+{nl:'dal', origin:'germanico', pt:'vale', en:'valley', de:'Tal', source:'Proto-germ. *dalą'},
+{nl:'eik', origin:'germanico', pt:'carvalho', en:'oak', de:'Eiche', source:'Proto-germ. *aiks'},
+{nl:'slang', origin:'germanico', pt:'cobra', en:'snake', de:'Schlange', source:'Proto-germ. *slangô'},
+{nl:'spin', origin:'germanico', pt:'aranha', en:'spider', de:'Spinne', source:'Proto-germ. *spinnô'},
+{nl:'bij', origin:'germanico', pt:'abelha', en:'bee', de:'Biene', source:'Proto-germ. *bīnō'},
+{nl:'vlieg', origin:'germanico', pt:'mosca', en:'fly (insect)', de:'Fliege', source:'Proto-germ. *fleugō'},
+{nl:'mier', origin:'germanico', pt:'formiga', en:'ant', de:'Ameise', source:'Proto-germ. *maitô'},
+{nl:'kat', origin:'latim', pt:'gato', en:'cat', de:'Katze', source:'Latim vulgar cattus (empréstimo tardio, comum a várias línguas)'},
+{nl:'geit', origin:'germanico', pt:'cabra', en:'goat', de:'Geiß/Ziege', source:'Proto-germ. *gaits'},
+{nl:'os', origin:'germanico', pt:'boi', en:'ox', de:'Ochse', source:'Proto-germ. *uhsô'},
+{nl:'gans', origin:'germanico', pt:'ganso', en:'goose', de:'Gans', source:'Proto-germ. *gans'},
+{nl:'eend', origin:'germanico', pt:'pato', en:'duck', de:'Ente', source:'Proto-germ. *anadz'},
+{nl:'varen', origin:'germanico', pt:'navegar', en:'sail', de:'fahren', source:'Proto-germ. *faraną'},
+{nl:'rijden', origin:'germanico', pt:'andar de veículo', en:'ride', de:'reiten/fahren', source:'Proto-germ. *rīdaną'},
+{nl:'klimmen', origin:'germanico', pt:'escalar', en:'climb', de:'klimmen', source:'Proto-germ. *klimbaną'},
+{nl:'springen', origin:'germanico', pt:'pular', en:'jump', de:'springen', source:'Proto-germ. *sprenganą'},
+{nl:'werpen', origin:'germanico', pt:'lançar', en:'throw', de:'werfen', source:'Proto-germ. *werpaną'},
+{nl:'wachten', origin:'germanico', pt:'esperar', en:'wait', de:'warten', source:'Proto-germ. *wahtwō'},
+{nl:'wonen', origin:'germanico', pt:'morar', en:'live/reside', de:'wohnen', source:'Proto-germ. *wunēną'},
+{nl:'slaan', origin:'germanico', pt:'bater', en:'hit', de:'schlagen', source:'Proto-germ. *slahaną'},
+{nl:'bouwen', origin:'germanico', pt:'construir', en:'build', de:'bauen', source:'Proto-germ. *būaną'},
+{nl:'kopen', origin:'latim', pt:'comprar', en:'buy', de:'kaufen', source:'Latim caupo (empréstimo antigo, \'comerciante\')', note:'Outro caso raro: uma palavra do dia a dia germânica que na verdade vem de um empréstimo latino muito antigo.'},
+{nl:'verkopen', origin:'latim', pt:'vender', en:'sell', de:'verkaufen', source:'Proto-germ. + Latim caupo'},
+{nl:'betalen', origin:'germanico', pt:'pagar', en:'pay', de:'bezahlen', source:'Proto-germ. *talōną (contar)'},
+{nl:'leren', origin:'germanico', pt:'aprender/ensinar', en:'learn/teach', de:'lernen/lehren', source:'Proto-germ. *liznōjaną'},
+{nl:'vergeten', origin:'germanico', pt:'esquecer', en:'forget', de:'vergessen', source:'Proto-germ. *fragetaną'},
+{nl:'onthouden', origin:'germanico', pt:'lembrar', en:'remember', de:'behalten', source:'Composto nativo (ont- + houden)'},
+{nl:'vragen', origin:'germanico', pt:'perguntar', en:'ask', de:'fragen', source:'Proto-germ. *frēgōną'},
+{nl:'antwoorden', origin:'germanico', pt:'responder', en:'answer', de:'antworten', source:'Proto-germ. *andawurdiją'},
+{nl:'beginnen', origin:'germanico', pt:'começar', en:'begin', de:'beginnen', source:'Proto-germ. *biginnaną'},
+{nl:'eindigen', origin:'germanico', pt:'terminar', en:'end', de:'enden', source:'Proto-germ. *andijaz'},
+{nl:'blijven', origin:'germanico', pt:'ficar/permanecer', en:'stay/remain', de:'bleiben', source:'Proto-germ. *bilībaną'},
+{nl:'worden', origin:'germanico', pt:'tornar-se', en:'become', de:'werden', source:'Proto-germ. *werþaną'},
+{nl:'kunnen', origin:'germanico', pt:'poder/saber (habilidade)', en:'can/be able', de:'können', source:'Proto-germ. *kunnaną'},
+{nl:'moeten', origin:'germanico', pt:'dever/ter que', en:'must', de:'müssen', source:'Proto-germ. *mōtaną'},
+{nl:'willen', origin:'germanico', pt:'querer', en:'want', de:'wollen', source:'Proto-germ. *wiljaną'},
+{nl:'mogen', origin:'germanico', pt:'poder (permissão)', en:'may', de:'mögen', source:'Proto-germ. *muganą'},
+{nl:'zullen', origin:'germanico', pt:'auxiliar de futuro', en:'shall/will', de:'sollen', source:'Proto-germ. *skulaną'},
+{nl:'scherp', origin:'germanico', pt:'afiado', en:'sharp', de:'scharf', source:'Proto-germ. *skarpaz'},
+{nl:'zacht', origin:'germanico', pt:'macio/suave', en:'soft', de:'sanft/weich', source:'Proto-germ. *samftijaz'},
+{nl:'hard', origin:'germanico', pt:'duro', en:'hard', de:'hart', source:'Proto-germ. *harduz'},
+{nl:'diep', origin:'germanico', pt:'profundo', en:'deep', de:'tief', source:'Proto-germ. *deupaz'},
+{nl:'breed', origin:'germanico', pt:'largo', en:'wide', de:'breit', source:'Proto-germ. *braidaz'},
+{nl:'smal', origin:'germanico', pt:'estreito', en:'narrow', de:'schmal', source:'Proto-germ. *smalaz'},
+{nl:'zwaar', origin:'germanico', pt:'pesado', en:'heavy', de:'schwer', source:'Proto-germ. *swēraz'},
+{nl:'dun', origin:'germanico', pt:'fino/magro', en:'thin', de:'dünn', source:'Proto-germ. *þunnuz'},
+{nl:'dik', origin:'germanico', pt:'gordo/grosso', en:'fat/thick', de:'dick', source:'Proto-germ. *þikkuz'},
+{nl:'droog', origin:'germanico', pt:'seco', en:'dry', de:'trocken', source:'Proto-germ. *draugiz'},
+{nl:'nat', origin:'germanico', pt:'molhado', en:'wet', de:'nass', source:'Proto-germ. *natjaz'},
+{nl:'schoon', origin:'germanico', pt:'limpo/bonito', en:'clean/beautiful', de:'schön', source:'Proto-germ. *skauniz', note:'Em alemão o sentido evoluiu para \'bonito\'; em holandês sobrevivem os dois sentidos conforme o contexto.'},
+{nl:'vuil', origin:'germanico', pt:'sujo', en:'dirty', de:'dreckig', source:'Proto-germ. *fūlaz (cognato de \'foul\' em inglês)'},
+{nl:'gelukkig', origin:'germanico', pt:'feliz', en:'happy', de:'glücklich', source:'Proto-germ. *galukkô'},
+{nl:'boos', origin:'germanico', pt:'bravo/zangado', en:'angry', de:'böse', source:'Proto-germ. *bausiz'},
+{nl:'bang', origin:'germanico', pt:'com medo', en:'afraid', de:'bange', source:'Proto-germ. *angu- (cognato de \'anxious\'/latim angustus)'},
+{nl:'moe', origin:'germanico', pt:'cansado', en:'tired', de:'müde', source:'Proto-germ. *mōþaz'},
+{nl:'ziek', origin:'germanico', pt:'doente', en:'sick', de:'siech (arcaico)/krank', source:'Proto-germ. *seukaz'},
+{nl:'gezond', origin:'germanico', pt:'saudável', en:'healthy', de:'gesund', source:'Proto-germ. *ga-sundaz'},
+{nl:'vrij', origin:'germanico', pt:'livre', en:'free', de:'frei', source:'Proto-germ. *frijaz'},
+{nl:'rijk', origin:'germanico', pt:'rico', en:'rich', de:'reich', source:'Proto-germ. *rīkijaz'},
+{nl:'waar', origin:'germanico', pt:'verdadeiro', en:'true', de:'wahr', source:'Proto-germ. *wēraz'},
+{nl:'vals', origin:'latim', pt:'falso', en:'false', de:'falsch', source:'Latim falsus (empréstimo)', note:'Ao contrário de \'waar\' (nativo), o antônimo \'vals\' foi emprestado do latim.'},
+];
+
+/* Árvores etimológicas detalhadas */
+const TREES = [
+  { id:'vinum', label:'vinum → wijn / vinho', root:{w:'vīnum', g:'latim clássico · "vinho"'},
+    branches:[
+      {w:'wijn', g:'holandês', origin:'latim'},
+      {w:'vinho', g:'português', origin:'latim'},
+      {w:'wine', g:'inglês (via germ. ocidental)', origin:'latim'},
+      {w:'Wein', g:'alemão', origin:'latim'},
+    ],
+    note:'Todas as quatro línguas herdaram a mesma palavra latina para "vinho" — a bebida (e o comércio romano) se espalhou junto com o nome. Note a consoante inicial: o V latino [w] virou W em holandês/inglês/alemão, mas [v] em português.'},
+  { id:'castellum', label:'castellum → kasteel / castelo', root:{w:'castellum', g:'latim · "pequeno forte" (diminutivo de castrum)'},
+    branches:[
+      {w:'kasteel', g:'holandês', origin:'latim'},
+      {w:'castelo', g:'português', origin:'latim'},
+      {w:'castle', g:'inglês (via francês antigo)', origin:'latim'},
+      {w:'Kastell', g:'alemão (termo culto)', origin:'latim'},
+    ],
+    note:'O alemão cotidiano prefere "Schloss" (de origem germânica, "fechadura/trancado"), enquanto "Kastell" ficou restrito a fortificações romanas — mostrando como uma língua pode ter dois "circuitos" de vocabulário para o mesmo conceito.'},
+  { id:'horologium', label:'horologium → horloge / relógio', root:{w:'hōrológium', g:'grego → latim · "o que diz a hora"'},
+    branches:[
+      {w:'horloge', g:'holandês (via francês)', origin:'frances'},
+      {w:'relógio', g:'português (via latim + re-)', origin:'latim'},
+      {w:'clock', g:'inglês (raiz distinta: "sino")', origin:'frances'},
+      {w:'Uhr', g:'alemão (raiz distinta)', origin:'latim'},
+    ],
+    note:'Mesmo étimo grego-latino, quatro rotas diferentes: o holandês pegou emprestado do francês medieval; o português refez a palavra direto do latim; inglês e alemão trocaram de raiz completamente (de "sino/campânula" e de outra raiz latina, respectivamente).'},
+  { id:'cultura', label:'cultura → cultuur (família completa)', root:{w:'cultūra', g:'latim · particípio de colere, "cultivar"'},
+    branches:[
+      {w:'cultuur', g:'holandês · substantivo', origin:'latim'},
+      {w:'cultura', g:'português · substantivo', origin:'latim'},
+      {w:'culture', g:'inglês · substantivo', origin:'latim'},
+      {w:'Kultur', g:'alemão · substantivo', origin:'latim'},
+    ],
+    note:'Uma única raiz latina gerou famílias paralelas em quatro línguas modernas: cultureel/cultural/cultural/kulturell; cultiveren/cultivar/cultivate/kultivieren. Aprender o padrão de sufixo vale por dezenas de palavras.'},
+  { id:'grimm-pater', label:'*ph₂tḗr → vader / pater (Lei de Grimm)', root:{w:'*ph₂tḗr', g:'proto-indo-europeu · "pai"'},
+    branches:[
+      {w:'vader', g:'holandês (p→f)', origin:'germanico'},
+      {w:'father', g:'inglês (p→f)', origin:'germanico'},
+      {w:'Vater', g:'alemão (p→f)', origin:'germanico'},
+      {w:'pater / pai', g:'latim → português (p preservado)', origin:'latim'},
+    ],
+    note:'Este é o exemplo mais famoso da Lei de Grimm: o ramo germânico transformou sistematicamente o P inicial indo-europeu em F, enquanto o latim (e por extensão o português) preservou o som original. O mesmo padrão explica voet/pé, vis/peixe e drie/três.'},
+];
+
+/* Padrões de terminação latim → holandês / português */
+const SUFFIX_PATTERNS = [
+  {suf:'-tio → -tie / -ção', desc:'Substantivos abstratos de ação. Praticamente 1-para-1.',
+   examples:[['informatio','informatie','informação'],['natio','natie','nação'],['educatio','educatie','educação']]},
+  {suf:'-tas → -teit / -dade', desc:'Substantivos de qualidade.',
+   examples:[['qualitas','kwaliteit','qualidade'],['universitas','universiteit','universidade'],['activitas','activiteit','atividade']]},
+  {suf:'-alis → -aal / -al', desc:'Adjetivos relacionais.',
+   examples:[['nationalis','nationaal','nacional'],['normalis','normaal','normal'],['culturalis','cultureel*','cultural']]},
+  {suf:'-icus → -isch / -ico', desc:'Adjetivos de campo/área — atenção: o holandês usa -isch para muitos onde o português usa -ico.',
+   examples:[['biologicus','biologisch','biológico'],['politicus','politiek*','político'],['economicus','economisch','econômico']]},
+  {suf:'-ura → -uur / -ura', desc:'Substantivos de resultado/processo.',
+   examples:[['cultura','cultuur','cultura'],['structura','structuur','estrutura'],['natura','natuur','natureza']]},
+  {suf:'-ivus → -ief / -ivo', desc:'Adjetivos que descrevem uma tendência ou capacidade.',
+   examples:[['activus','actief','ativo'],['positivus','positief','positivo'],['creativus','creatief','criativo']]},
+  {suf:'-mentum → -ment / -mento', desc:'Substantivos de instrumento ou resultado — o holandês quase sempre derruba o -o final.',
+   examples:[['documentum','document','documento'],['instrumentum','instrument','instrumento'],['momentum','moment','momento']]},
+  {suf:'-antia/-entia → -antie/-entie / -ança/-ência', desc:'Substantivos abstratos formados a partir de particípios presentes.',
+   examples:[['tolerantia','tolerantie','tolerância'],['distantia','distantie','distância'],['substantia','substantie','substância']]},
+  {suf:'-ismus → -isme / -ismo', desc:'Substantivos de doutrina, movimento ou condição.',
+   examples:[['socialismus','socialisme','socialismo'],['turismus (mod.)','toerisme','turismo'],['journalismus (mod.)','journalisme','jornalismo']]},
+  {suf:'-ista → -ist / -ista', desc:'Pessoa praticante ou seguidora de algo — o holandês perde o -a final.',
+   examples:[['pianista','pianist','pianista'],['artista','artiest*','artista'],['turista (mod.)','toerist','turista']]},
+  {suf:'-arius → -aris (ou -air, via francês) / -ário', desc:'Substantivos de profissão ou função.',
+   examples:[['secretarius','secretaris','secretário'],['notarius','notaris','notário'],['militaris','militair*','militar']]},
+  {suf:'-ium → -ium / -io', desc:'Substantivos neutros — o holandês mantém a forma latina quase intacta, o português a reduz.',
+   examples:[['museum','museum','museu'],['gymnasium','gymnasium','ginásio'],['aquarium','aquarium','aquário']]},
+];
+
+/* Famílias */
+const FAMILIES = [
+  {title:'cultuur', root:'latim cultura', items:[
+    {w:'cultuur',role:'substantivo',pt:'cultura'},{w:'cultureel',role:'adjetivo',pt:'cultural'},
+    {w:'cultiveren',role:'verbo',pt:'cultivar'},{w:'cultuurschok',role:'composto',pt:'choque cultural'}]},
+  {title:'natie', root:'latim natio', items:[
+    {w:'natie',role:'substantivo',pt:'nação'},{w:'nationaal',role:'adjetivo',pt:'nacional'},
+    {w:'nationaliteit',role:'substantivo',pt:'nacionalidade'},{w:'internationaal',role:'adjetivo',pt:'internacional'}]},
+  {title:'informatie', root:'latim informare', items:[
+    {w:'informatie',role:'substantivo',pt:'informação'},{w:'informeren',role:'verbo',pt:'informar'},
+    {w:'informatief',role:'adjetivo',pt:'informativo'}]},
+  {title:'telefoon', root:'grego tēle + phōnē', items:[
+    {w:'telefoon',role:'substantivo',pt:'telefone'},{w:'telefoneren',role:'verbo',pt:'telefonar'},
+    {w:'telefonisch',role:'adjetivo',pt:'telefônico'}]},
+  {title:'polis (⚠️ falsos irmãos)', root:'grego pólis, "cidade"', items:[
+    {w:'politie',role:'substantivo',pt:'polícia'},{w:'politiek',role:'substantivo',pt:'política'},
+    {w:'politicus',role:'substantivo',pt:'político'}]},
+];
+
+/* Timeline */
+const TL_GERM = [
+  {period:'~4500–2500 a.C.', name:'Proto-Indo-Europeu', desc:'Língua ancestral reconstruída, ponto de partida comum de germânico e latim.'},
+  {period:'~500 a.C. – 200 d.C.', name:'Proto-Germânico', desc:'A Lei de Grimm desloca consoantes (p→f, t→th, k→h), separando o ramo germânico do restante do indo-europeu.'},
+  {period:'450 – 1150', name:'Holandês Antigo', desc:'Primeiros textos ("Hebban olla vogala", c. 1100); vocabulário majoritariamente germânico.'},
+  {period:'1150 – 1500', name:'Holandês Médio', desc:'Forte influxo de empréstimos franceses via a corte da Borgonha e o comércio.'},
+  {period:'1500 – hoje', name:'Holandês Moderno', desc:'Padronização no Século de Ouro; onda de empréstimos eruditos latinos/gregos; depois, influência do inglês.'},
+];
+const TL_LAT = [
+  {period:'~4500–2500 a.C.', name:'Proto-Indo-Europeu', desc:'Mesmo ponto de partida — o latim preserva muitas consoantes originais que o germânico transformou.'},
+  {period:'750 a.C. – 200 d.C.', name:'Latim Arcaico/Clássico', desc:'Roma se expande; o latim se torna língua administrativa de toda a bacia do Mediterrâneo ocidental.'},
+  {period:'200 – 700', name:'Latim Vulgar', desc:'A fala cotidiana dos romanos comuns diverge do latim clássico — base de todas as línguas românicas.'},
+  {period:'700 – 1500', name:'Galego-Português', desc:'Emerge da Península Ibérica; absorve também empréstimos árabes durante o período mourisco.'},
+  {period:'1500 – hoje', name:'Português Moderno', desc:'Padronização e expansão global; ao mesmo tempo, o latim erudito continua alimentando diretamente o holandês (universiteit, cultuur).'},
+];
+</script>
+
+<script>
+
+/* Palavras usadas no quiz (subconjunto embaralhável) */
+const QUIZ_POOL = WORDS.filter(w => w.note || ['water','huis','hand','wijn','kaas','bureau','chef','telefoon','kerk','democratie','vader','hart','cultuur','politie','politiek'].includes(w.nl));
+
+/* ============================================================
+   RENDER: NAV SCROLL SPY
+   ============================================================ */
+const navLinks = document.querySelectorAll('.navlink');
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
+  navLinks.forEach(a => a.classList.toggle('active', a.dataset.page === id));
+  window.scrollTo({top:0, behavior:'auto'});
+}
+navLinks.forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    showPage(a.dataset.page);
+  });
+});
+showPage('inicio');
+
+/* ============================================================
+   RENDER: HERO STATS
+   ============================================================ */
+document.getElementById('statWords').textContent = WORDS.length;
+document.getElementById('statCompare').textContent = WORDS.length;
+
+/* ============================================================
+   RENDER: TIMELINE
+   ============================================================ */
+function renderTimeline(){
+  const wrap = document.getElementById('timelineTracks');
+  const track = (title,color,eras) => `
+    <div class="track">
+      <h3><span class="dot" style="background:${color}"></span>${title}</h3>
+      ${eras.map(e => `
+        <div class="era">
+          <div class="period mono">${e.period}</div>
+          <div class="name">${e.name}</div>
+          <p>${e.desc}</p>
+        </div>`).join('')}
+    </div>`;
+  wrap.innerHTML = track('Ramo Germânico → Holandês', ORIGIN_META.germanico.color, TL_GERM)
+                  + track('Ramo Românico → Português', ORIGIN_META.latim.color, TL_LAT);
+}
+renderTimeline();
+
+/* ============================================================
+   RENDER: ÁRVORES
+   ============================================================ */
+function renderTreePicker(){
+  const wrap = document.getElementById('treePicker');
+  wrap.innerHTML = TREES.map((t,i) => `<button class="tree-btn ${i===0?'active':''}" data-i="${i}">${t.label}</button>`).join('');
+  wrap.querySelectorAll('.tree-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      wrap.querySelectorAll('.tree-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTree(TREES[+btn.dataset.i]);
+    });
+  });
+}
+function renderTree(t){
+  const stage = document.getElementById('treeStage');
+  stage.innerHTML = `
+    <div style="text-align:center;">
+      <div class="tree-root">${t.root.w}<span class="gloss">${t.root.g}</span></div>
+    </div>
+    <div class="tree-cols">
+      ${t.branches.map(b => {
+        const m = ORIGIN_META[b.origin];
+        return `<div class="tree-branch">
+          <div class="tree-node" style="background:${m.color}1a; color:${m.color};">
+            <span class="w">${b.w}</span><span class="g">${b.g}</span>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="tree-note">${t.note}</div>`;
+}
+renderTreePicker();
+renderTree(TREES[0]);
+
+/* ============================================================
+   RENDER: SONS
+   ============================================================ */
+function renderGrimm(){
+  const items = [
+    { from:'P', to:'F', latWord:'pater', latLabel:'latim', ptWord:'pai', ptLabel:'português',
+      germWord:'vader', germLabel:'holandês', extra:'father (EN) · Vater (DE)' },
+    { from:'T', to:'TH / D', latWord:'tres', latLabel:'latim', ptWord:'três', ptLabel:'português',
+      germWord:'drie', germLabel:'holandês', extra:'three (EN) · drei (DE)' },
+    { from:'K', to:'H', latWord:'cor, cordis', latLabel:'latim', ptWord:'coração', ptLabel:'português',
+      germWord:'hart', germLabel:'holandês', extra:'heart (EN) · Herz (DE)' },
+    { from:'D', to:'T', latWord:'decem', latLabel:'latim', ptWord:'dez', ptLabel:'português',
+      germWord:'tien', germLabel:'holandês', extra:'ten (EN) · zehn (DE)' },
+  ];
+  document.getElementById('grimmGrid').innerHTML = items.map(it => `
+    <div class="grimm-card">
+      <div class="grimm-shift"><span class="from">${it.from}</span><span class="arrow">→</span><span class="to">${it.to}</span></div>
+      <div class="grimm-caption">essa consoante muda assim do latim para o germânico</div>
+      <div class="grimm-pair">
+        <div class="grimm-box latim">
+          <div class="word">${it.latWord}</div>
+          <div class="label">${it.latLabel}</div>
+          <div class="word" style="font-size:.95rem; margin-top:6px;">${it.ptWord}</div>
+          <div class="label">${it.ptLabel}</div>
+        </div>
+        <div class="grimm-arrow-mid">→</div>
+        <div class="grimm-box germ">
+          <div class="word">${it.germWord}</div>
+          <div class="label">${it.germLabel}</div>
+          <div class="label" style="margin-top:10px;">${it.extra}</div>
+        </div>
+      </div>
+    </div>`).join('')
+    + `<div class="grimm-note" style="grid-column:1/-1;">💡 Leitura: no exemplo P→F, a palavra latina começa com <b>P</b> ("pater"); a mesma raiz indo-europeia, no ramo germânico, passou a começar com <b>F</b> ("vader", "father", "Vater"). É por isso que "pai" e "vader" soam tão diferentes mas são, na origem, a mesma palavra.</div>`;
+}
+renderGrimm();
+
+function renderPatterns(){
+  document.getElementById('patternCards').innerHTML = SUFFIX_PATTERNS.map(p => `
+    <div class="pattern-card">
+      <h4>${p.suf}</h4>
+      <p style="margin:6px 0 0; color:var(--text-soft); font-size:.88rem;">${p.desc}</p>
+      <div class="pattern-grid">
+        ${p.examples.map(ex => `
+          <div class="pattern-ex">
+            <div class="lat">${ex[0]}</div>
+            <div class="pair">${ex[1]} <span style="color:var(--text-soft); font-weight:400;">/ ${ex[2]}</span></div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+renderPatterns();
+
+/* ============================================================
+   RENDER: DICIONÁRIO
+   ============================================================ */
+let favorites = new Set();
+let storageReady = false;
+(async () => {
+  try {
+    const res = await window.storage?.get('favoritos', false);
+    if (res && res.value) favorites = new Set(JSON.parse(res.value));
+    storageReady = true;
+  } catch(e){ storageReady = true; }
+  renderDict();
+})();
+
+let activeOrigins = new Set(Object.keys(ORIGIN_META));
+let searchTerm = '';
+
+function renderChips(){
+  const wrap = document.getElementById('filterChips');
+  wrap.innerHTML = Object.entries(ORIGIN_META).map(([key,m]) => `
+    <span class="chip ${key} clickable" data-key="${key}">
+      <span class="dot"></span>${m.label}
+    </span>`).join('');
+  wrap.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const key = chip.dataset.key;
+      if (activeOrigins.has(key)) { activeOrigins.delete(key); chip.classList.add('off'); }
+      else { activeOrigins.add(key); chip.classList.remove('off'); }
+      renderDict();
+    });
+  });
+}
+renderChips();
+
+function renderDict(){
+  const grid = document.getElementById('dictGrid');
+  const term = searchTerm.trim().toLowerCase();
+  const filtered = WORDS.filter(w => {
+    if (!activeOrigins.has(w.origin)) return false;
+    if (!term) return true;
+    return [w.nl,w.pt,w.en,w.de].some(v => v.toLowerCase().includes(term));
+  });
+  document.getElementById('dictCount').textContent = `${filtered.length} de ${WORDS.length} palavras`;
+  grid.innerHTML = filtered.map(w => {
+    const isFav = favorites.has(w.nl);
+    return `
+    <div class="word-card ${w.origin}">
+      <div class="top">
+        <div>
+          <span class="badge">${ORIGIN_META[w.origin].label}</span>
+        </div>
+        <button class="fav-btn ${isFav?'active':''}" data-w="${w.nl}" title="Salvar palavra">${isFav ? '★' : '☆'}</button>
+      </div>
+      <div class="nl">${w.nl}</div>
+      <div class="src mono">${w.source}</div>
+      <div class="cognates">
+        <b>PT</b><span>${w.pt}</span>
+        <b>EN</b><span>${w.en}</span>
+        <b>DE</b><span>${w.de}</span>
+      </div>
+      ${w.note ? `<div class="note">${w.note}</div>` : ''}
+    </div>`;
+  }).join('') || `<p style="color:var(--text-soft);">Nenhuma palavra encontrada com esses filtros.</p>`;
+
+  grid.querySelectorAll('.fav-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const w = btn.dataset.w;
+      if (favorites.has(w)) favorites.delete(w); else favorites.add(w);
+      renderDict();
+      try { await window.storage?.set('favoritos', JSON.stringify([...favorites]), false); } catch(e){}
+    });
+  });
+}
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchTerm = e.target.value;
+  renderDict();
+});
+renderDict();
+
+/* ============================================================
+   RENDER: FAMÍLIAS
+   ============================================================ */
+function renderFamilies(){
+  document.getElementById('famGrid').innerHTML = FAMILIES.map(f => `
+    <div class="fam-card">
+      <h4>${f.title}</h4>
+      <div class="root mono">raiz: ${f.root}</div>
+      ${f.items.map(it => `
+        <div class="fam-item">
+          <div><b>${it.w}</b><div class="role">${it.role}</div></div>
+          <div style="color:var(--text-soft); align-self:center;">${it.pt}</div>
+        </div>`).join('')}
+    </div>`).join('');
+}
+renderFamilies();
+
+/* ============================================================
+   RENDER: COMPARAÇÃO
+   ============================================================ */
+function renderCompare(){
+  document.getElementById('compareBody').innerHTML = WORDS.map(w => `
+    <tr>
+      <td class="nl-cell"><span class="origin-dot" style="background:${ORIGIN_META[w.origin].color}"></span>${w.nl}</td>
+      <td>${w.pt}</td>
+      <td>${w.en}</td>
+      <td>${w.de}</td>
+      <td class="mono" style="font-size:.78rem;">${w.source}</td>
+    </tr>`).join('');
+}
+renderCompare();
+
+/* ============================================================
+   QUIZ
+   ============================================================ */
+let quizQueue = [];
+let quizCurrent = null;
+let quizScore = {right:0, total:0};
+let quizAnswered = false;
+
+function shuffle(arr){ return [...arr].sort(() => Math.random()-0.5); }
+function refillQueue(){ quizQueue = shuffle(QUIZ_POOL); }
+
+function nextQuiz(){
+  if (quizQueue.length === 0) refillQueue();
+  quizCurrent = quizQueue.pop();
+  quizAnswered = false;
+  document.getElementById('quizWord').textContent = quizCurrent.nl;
+  document.getElementById('quizHint').textContent = `"${quizCurrent.pt}" em português — qual a origem?`;
+  const opts = shuffle(Object.keys(ORIGIN_META));
+  document.getElementById('quizOptions').innerHTML = opts.map(key => `
+    <button class="quiz-opt" data-key="${key}">${ORIGIN_META[key].label}</button>`).join('');
+  document.getElementById('quizReveal').classList.remove('show');
+  document.getElementById('quizReveal').innerHTML = '';
+  document.querySelectorAll('.quiz-opt').forEach(btn => btn.addEventListener('click', onQuizAnswer));
+}
+
+function onQuizAnswer(e){
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const chosen = e.target.dataset.key;
+  const correct = quizCurrent.origin;
+  quizScore.total++;
+  if (chosen === correct) quizScore.right++;
+  document.querySelectorAll('.quiz-opt').forEach(btn => {
+    if (btn.dataset.key === correct) btn.classList.add('correct');
+    else if (btn.dataset.key === chosen) btn.classList.add('wrong');
+  });
+  const reveal = document.getElementById('quizReveal');
+  reveal.innerHTML = `<b>${quizCurrent.nl}</b> vem de <span class="mono">${quizCurrent.source}</span> (${ORIGIN_META[correct].label}).
+    ${quizCurrent.note ? '<br>' + quizCurrent.note : ''}`;
+  reveal.classList.add('show');
+  document.getElementById('quizScore').textContent = `Acertos: ${quizScore.right} / ${quizScore.total}`;
+}
+document.getElementById('quizNext').addEventListener('click', nextQuiz);
+refillQueue();
+nextQuiz();
+</script>
+</body>
+</html>
